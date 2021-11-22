@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.footer-text{
+    @apply my-2 text-gray-600 hover:underline
+}
+
+.freelance-grid-child{
+    @apply w-96 shadow-lg rounded-md flex flex-col items-center justify-center h-48
+}
+
+.freelance{
+    @apply bg-gray-100
+}
+
+.flex-col-center{
+    @apply flex flex-col items-center
+}
