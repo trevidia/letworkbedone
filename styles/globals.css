@@ -7,7 +7,7 @@
 }
 
 .freelance-grid-child{
-    @apply w-96 shadow-lg rounded-md flex flex-col items-center justify-center h-48
+    @apply w-72 md:w-96 shadow-lg rounded-md flex flex-col items-center justify-center h-48
 }
 
 .freelance{

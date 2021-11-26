@@ -12,16 +12,16 @@ const LetWorkBeDone = () => {
                  alt="background image"/>
             <div className="h-full flex flex-col  justify-center items-center text-white
                   absolute top-0 inset-x-0 bg-opacity-20  z-10">
-                <h1 className=" text-4xl uppercase font-bold">
+                <h1 className={" md:text-4xl text-2xl uppercase font-bold"}>
                     GET YOUR WORK DONE FROM $5
                 </h1>
                 <p className="w-3/4 mt-3 text-lg text-center">
                     Browse through thousands of Services. Choose one you trust. Pay as you go.
                 </p>
                 {/*Search bar */}
-                <div className={"w-full flex justify-center mt-3"}>
-                    <input className={"w-2/4 h-16 rounded-md px-3 text-black"} type={"text"} placeholder={"Find Service"}/>
-                    <button className={"ml-4 bg-yellowgreen w-32 rounded-md text-xl uppercase"}>
+                <div className={"w-full flex items-center justify-center mt-3"}>
+                    <input className={"w-4/6 h-10 md:h-16 rounded-md px-3 text-black"} type={"text"} placeholder={"Find Service"}/>
+                    <button className={"md:ml-4 ml-1 bg-yellowgreen md:h-full h-10   w-20 md:w-32 text-sm rounded-md md:text-xl uppercase"}>
                         Search
                     </button>
                 </div>
@@ -39,7 +39,7 @@ const LetWorkBeDone = () => {
                     </div>
                 </div>
                 {/* Grid for the categories */}
-                <section className={"grid grid-cols-3 gap-4 mb-14"}>
+                <section className={"grid md:grid-cols-2 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1  gap-4 mb-14"}>
                     <Link href={"/categories/graphics_design"}>
                         <a>
                             <div className={"freelance-grid-child freelance"}>
@@ -207,13 +207,13 @@ const LetWorkBeDone = () => {
             {/* End of Grid Section for categories And beginning of Its easy to get work done    */}
             <section className={"py-10 flex-col-center"}>
                 <div className={"mb-20 flex-col-center"}>
-                    <h2 className={"text-3xl font-semibold "}>
+                    <h2 className={"md:text-3xl text-xl font-semibold "}>
                         It's Easy To Get Work Done on Letworkbedone
                     </h2>
                     <div className={"w-20 border-b-2 border-blue-800 h-2"}>
                     </div>
                 </div>
-                <div className={"grid-cols-4 grid px-14 pb-12 gap-4"}>
+                <div className={"md:grid-cols-4 sm:grid-cols-1 grid px-14 pb-12 gap-4"}>
                     <div className={"flex-col-center w-full"}>
                         <div className={"rounded-full h-24 w-24 filter drop-shadow-xl shadow-md mb-12 flex justify-center items-center bg-gray-100"}>
                             <svg role="img" className={"h-16"} aria-label="Post a Job">
@@ -289,10 +289,10 @@ const LetWorkBeDone = () => {
             </section>
             {/* End of post request and beginning of what is great with let work done */}
             <section className={"flex-col-center pb-28"}>
-                <h2 className={"text-3xl font-semibold my-16"}>
+                <h2 className={"md:text-3xl text-2xl font-semibold  my-16"}>
                     What is Great With letworkbedone
                 </h2>
-                <div className={"grid grid-cols-3 w-5/6 gap-12 "}>
+                <div className={"grid md:grid-cols-3 sm:grid-cols-1 w-5/6 gap-12 "}>
                     <div>
 
                         <h3 className={"text-2xl my-4 font-semibold"}>Browse Portfolio</h3>

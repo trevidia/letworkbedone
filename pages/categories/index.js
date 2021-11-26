@@ -1,5 +1,4 @@
 import Link from "next/link";
-import {router} from "next/client";
 const Categories = ()=>{
     const categoriesJson = [
         {
@@ -248,7 +247,7 @@ const Categories = ()=>{
                             (element)=>{
                                 return <div key={"Cat" + element.index} className={""}>
                                     <Link href={`/categories/${element.title.replace(" & ", "_")
-                                        .replaceAll(" ", "_").toLowerCase()}`}>
+                                        .replace(/ /g, "_").toLowerCase()}`}>
                                         <a>
                                             <h3 className={"text-gray-700 my-4 font-semibold text-2xl"}>{element.title}</h3>
                                         </a>
@@ -258,7 +257,7 @@ const Categories = ()=>{
                                             return <li key={"subCat" + index} className={"text-md text-gray-600"}>
                                                 <Link href={`/categories/${element.title.replace(" & ", " ")
                                                     .replace(" ", "_").toLowerCase()}/${subCat.replace(" & ", " ")
-                                                    .replaceAll(" ", "_").toLowerCase()}`}>
+                                                    .replace(/ /g, "_").toLowerCase()}`}>
                                                     <a>
                                                         {subCat}
                                                     </a>

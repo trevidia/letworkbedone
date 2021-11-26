@@ -248,7 +248,6 @@ const Categories = () => {
 
         })
     },[router.asPath]);
-    console.log(window.sessionStorage)
 
   return (
       <>

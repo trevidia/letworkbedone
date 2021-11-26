@@ -8,13 +8,20 @@ const DropDownNav = ({data}) => {
     useLayoutEffect(() => {
         const screenWidth = window.screen.width;
         const currentTargetWidth = dropDown.current.getBoundingClientRect().right;
+        const parentTargetWidth = dropDown.current.parentNode.getBoundingClientRect().right;
+
+
 
         /*
              If the drop down is extending more than the size of the screen width then
              the dropdown would be resized to fit the screen
          */
         if (screenWidth < currentTargetWidth) {
-            dropDown.current.style.left = `${screenWidth - currentTargetWidth - 50}px`
+            console.log(screenWidth - currentTargetWidth);
+            console.log(parentTargetWidth);
+            dropDown.current.style.left = `${ - currentTargetWidth + parentTargetWidth + 25}px`
+            // dropDown.current.style.float = "left";
+            // dropDown.current.
         }
     }, [data])
     return <ul ref={dropDown} className="absolute m-auto left-0 w-max px-4 py-7

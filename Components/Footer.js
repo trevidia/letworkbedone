@@ -5,52 +5,54 @@ const Footer = () => {
     return (
         <>
             <footer className={"border-t border-gray-300 z-0 flex flex-col items-center"}>
-                <div className={"grid grid-cols-5 gap-x-4 font-sans w-full px-12 py-10"}>
-                    <div className={"flex flex-col"}>
-                        <h4 className={"text-lg font-semibold my-3"}>Categories</h4>
-                        <span className={"footer-text"}>
+                {/*Top footer nav*/}
+                <div className={"lg:grid hidden grid-cols-5 gap-x-4 font-sans w-full px-12 py-10"}>
+                    <div className={"flex flex-col "}>
+                        <h4 className={"text-lg font-semibold py-3 "}>Categories</h4>
+                        <div className={"flex flex-col"}>
+                             <span className={"footer-text"}>
                           <Link href={"/categories/graphics_design"}>
                               <a>
                                       Graphics & Design
                               </a>
                           </Link>
                       </span>
-                        <span className={"footer-text"}>
+                            <span className={"footer-text"}>
                           <Link href={"/categories/digital_marketing"}>
                                             <a>
                                                 Digital Marketing
                                             </a>
                           </Link>
                       </span>
-                        <span className={"footer-text"}>
+                            <span className={"footer-text"}>
                           <Link href={"/categories/writing_translation"}>
                              <a>
                                   Writing & Translation
                              </a>
                           </Link>
                       </span>
-                        <span className={"footer-text"}>
+                            <span className={"footer-text"}>
                           <Link href={"/categories/video_animation"}>
                                <a>
                                    Video & Animation
                                </a>
                           </Link>
                       </span>
-                        <span className={"footer-text"}>
+                            <span className={"footer-text"}>
                          <Link href={"/categories/music_audio"}>
                              <a>
                                   Music & Audio
                              </a>
                          </Link>
                       </span>
-                        <span className={"footer-text"}>
+                            <span className={"footer-text"}>
                            <Link href={"/categories/programming_tech"}>
                                <a>
                                      Programming & Tech
                                </a>
                            </Link>
                       </span>
-                        <span className={"footer-text"}>
+                            <span className={"footer-text"}>
                           <Link href={"/categories/business"}>
                               <a>
                                   Business
@@ -58,13 +60,15 @@ const Footer = () => {
                           </Link>
 
                       </span>
-                        <span className={"footer-text"}>
+                            <span className={"footer-text"}>
                            <Link href={"/categories/fun_lifestyle"}>
                                  <a>
                                       Fun & Lifestyle
                                  </a>
                            </Link>
                       </span>
+                        </div>
+
                     </div>
                     <div className={"flex flex-col"}>
                         <h4 className={"text-lg font-semibold my-3"}>About</h4>
@@ -197,6 +201,7 @@ const Footer = () => {
 
                     </div>
                 </div>
+                {/*Bottom footer */}
                 <div className={"border-t border-gray-300 w-full h-36 flex flex-col  items-center justify-center"}>
                     <div className={"flex justify-center my-3"}>
                         <span className={"mx-2"}>

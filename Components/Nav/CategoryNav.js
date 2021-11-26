@@ -253,9 +253,9 @@ const CategoryNav = () => {
     }
     return (
         <>
-            <nav className={"h-10 border-t border-gray-300 border-b"}>
+            <nav className={"h-10 border-t border-gray-300 border-b hidden lg:block"}>
                 <div className={"h-full text-sm"}>
-                    <ul className={"flex justify-around h-full"}>
+                    <ul className={"flex justify-around w-full px-4 h-full"}>
                         {categories.map((categoryTitle, index) => {
                             return (
                                 <li className={"block group relative h-full "} key={index}>

@@ -3,6 +3,9 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      fontsize: {
+        tiny: '0.6rem'
+      },
       height: {
         "screen-90": "90vh",
         "screen-80": "80vh",
@@ -37,7 +40,8 @@ module.exports = {
   },
   variants: {
     extend: {
-      display: ['group-hover']
+      display: ['group-hover'],
+      height: ['group-hover']
     },
   },
   plugins: [],
