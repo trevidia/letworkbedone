@@ -1,5 +1,5 @@
 import {useRouter} from "next/router";
-import {useLayoutEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import Link from "next/link";
 
 
@@ -242,22 +242,22 @@ const Categories = () => {
             ]}
     ];
     const [category, setCategory] = useState(categoriesJson[0]);
-    useLayoutEffect(()=>{
-        categoriesJson.find((e)=>{
+    useEffect(() => {
+        categoriesJson.find((e) => {
             if (e.url === router.asPath) setCategory(e);
 
         })
-    },[router.asPath]);
+    }, [router.asPath]);
 
   return (
       <>
           {
-              category.url === router.asPath ? <main className={"flex-col-center "}>
+              category.url === router.asPath ? <main className={"flex-col-center"}>
                   <h3 className={"text-2xl font-semibold my-8"}>
                       {category.title}
                   </h3>
                   <span>
-
+              {/*        Category quote init */}
               </span>
                   <div className={"grid grid-cols-4 justify-items-center w-full pb-28 pt-2"}>
                       {/* Side Menu */}

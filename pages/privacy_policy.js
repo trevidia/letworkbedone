@@ -100,22 +100,22 @@ const PrivacyPolicy = () => {
                         </h3>
                         <p className={"text-md text-gray-600 my-1"}>
                             The ways in which we may use your personal information on <b>Letworkbedone</b> include:
-                            <ol className={"text-md text-gray-600 my-1 list-decimal ml-16"}>
-                                <li>
-                                    To verify your identity.
-                                </li>
-                                <li>To respond to queries, complaints or to provide you with our customer service.</li>
-                                <li>To validate any transactions which you may enter with us.</li>
-                                <li>To administer and manage the provision of our services.</li>
-                                <li>To comply with laws and regulatory requests made by a governmental authority as it
-                                    relates to legal proceedings or for the prevention or detection of fraud and crime.
-                                </li>
-                                <li>Barring the foregoing, we will under no event knowingly sell, transfer or share any
-                                    of your information with a third party without your permission.
-                                </li>
-
-                            </ol>
                         </p>
+                        <ol className={"text-md text-gray-600 my-1 list-decimal ml-16"}>
+                            <li>
+                                To verify your identity.
+                            </li>
+                            <li>To respond to queries, complaints or to provide you with our customer service.</li>
+                            <li>To validate any transactions which you may enter with us.</li>
+                            <li>To administer and manage the provision of our services.</li>
+                            <li>To comply with laws and regulatory requests made by a governmental authority as it
+                                relates to legal proceedings or for the prevention or detection of fraud and crime.
+                            </li>
+                            <li>Barring the foregoing, we will under no event knowingly sell, transfer or share any
+                                of your information with a third party without your permission.
+                            </li>
+
+                        </ol>
                     </section>
                     <section>
                         <h3 className={"text-2xl text-gray-700 font-semibold my-2"}>
@@ -177,29 +177,29 @@ const PrivacyPolicy = () => {
                         </p>
                         <p className={"text-md text-gray-600 my-1"}>
                             Your rights concerning your personal information are:
-                            <ol className={"text-md text-gray-600 my-1 list-decimal ml-16"}>
-                                <li>
-                                    You can ask about the personal information we hold about you and we will show you.
-                                    There is no charge for this service.
-                                </li>
-                                <li>
-                                    You can request your personal information is corrected and we will update the
-                                    details and inform you when completed. There is no charge for this service.
-                                </li>
-                                <li>You can object to your data being processed and we will stop processing your data
-                                    once no longer required for performance of contract or legal obligations and there
-                                    is no charge for this service.
-                                </li>
-                                <li>You can object to receiving direct marketing communications from us and we will stop
-                                    all communications by channel (email, SMS) or within certain subject areas. There is
-                                    no charge for this service.
-                                </li>
-                                <li>You can ask for your personal information to be erased, once no longer required for
-                                    performance of contract or legal obligations and there is no charge for this
-                                    service.
-                                </li>
-                            </ol>
                         </p>
+                        <ol className={"text-md text-gray-600 my-1 list-decimal ml-16"}>
+                            <li>
+                                You can ask about the personal information we hold about you and we will show you.
+                                There is no charge for this service.
+                            </li>
+                            <li>
+                                You can request your personal information is corrected and we will update the
+                                details and inform you when completed. There is no charge for this service.
+                            </li>
+                            <li>You can object to your data being processed and we will stop processing your data
+                                once no longer required for performance of contract or legal obligations and there
+                                is no charge for this service.
+                            </li>
+                            <li>You can object to receiving direct marketing communications from us and we will stop
+                                all communications by channel (email, SMS) or within certain subject areas. There is
+                                no charge for this service.
+                            </li>
+                            <li>You can ask for your personal information to be erased, once no longer required for
+                                performance of contract or legal obligations and there is no charge for this
+                                service.
+                            </li>
+                        </ol>
                     </section>
                     <section>
                         <h3 className={"text-2xl text-gray-700 font-semibold my-2"}>

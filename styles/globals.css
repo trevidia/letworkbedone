@@ -7,13 +7,30 @@
 }
 
 .freelance-grid-child{
-    @apply w-72 md:w-96 shadow-lg rounded-md flex flex-col items-center justify-center h-48
+    @apply w-72 md:w-80 rounded-md flex flex-col items-center justify-center h-36 ring-4 ring-blue-200 ring-opacity-30
 }
 
-.freelance{
-    @apply bg-gray-100
+.freelance {
+    @apply bg-white
 }
 
-.flex-col-center{
+.flex-col-center {
     @apply flex flex-col items-center
 }
+
+.input {
+    @apply focus:ring-2 focus:outline-none border w-full  border-gray-300 px-3 text-gray-700 transition duration-300 rounded-sm ring-blue-200
+}
+
+.input-height {
+    @apply h-10
+}
+
+.textarea-height {
+    @apply h-36
+}
+
+.label {
+    @apply text-gray-800 text-lg my-3 block w-full
+}
+

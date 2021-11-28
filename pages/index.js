@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const LetWorkBeDone = () => {
     const router = useRouter();
-    // const fish = router.query
+    // const [user] = router.query
     return <>
         {/*Header for the page for searching for proposals when the user isn't logged in*/}
         <header className="h-auto relative">
@@ -43,7 +43,7 @@ const LetWorkBeDone = () => {
                     <Link href={"/categories/graphics_design"}>
                         <a>
                             <div className={"freelance-grid-child freelance"}>
-                                <svg className={"h-16 mb-2"}>
+                                <svg className={"h-8 mb-2"}>
                                     <use xlinkHref={"/images/symbol-defs.svg#icon-cat-1"}>
                                     </use>
                                 </svg>
@@ -61,7 +61,7 @@ const LetWorkBeDone = () => {
                     <Link href={"/categories/writing_translation"}>
                         <a>
                             <div className={"freelance-grid-child freelance"}>
-                                <svg className={"h-16 mb-2"}>
+                                <svg className={"h-8 mb-2"}>
                                     <use xlinkHref={"/images/symbol-defs.svg#icon-cat-2"}>
                                     </use>
                                 </svg>
@@ -78,7 +78,7 @@ const LetWorkBeDone = () => {
                     <Link href={"/categories/digital_marketing"}>
                         <a>
                             <div className={"freelance-grid-child freelance"}>
-                                <svg className={"h-16 mb-2"}>
+                                <svg className={"h-8 mb-2"}>
                                     <use xlinkHref={"/images/symbol-defs.svg#icon-cat-3"}>
                                     </use>
                                 </svg>
@@ -95,7 +95,7 @@ const LetWorkBeDone = () => {
                     <Link href={"/categories/video_animation"}>
                         <a>
                             <div className={"freelance-grid-child freelance"}>
-                                <svg className={"h-16 mb-2"}>
+                                <svg className={"h-8 mb-2"}>
                                     <use xlinkHref={"/images/symbol-defs.svg#icon-cat-4"}>
                                     </use>
                                 </svg>
@@ -113,7 +113,7 @@ const LetWorkBeDone = () => {
                     <Link href={"/categories/programming_tech"}>
                         <a>
                             <div className={"freelance-grid-child freelance"}>
-                                <svg className={"h-16 mb-2"}>
+                                <svg className={"h-8 mb-2"}>
                                     <use xlinkHref={"/images/symbol-defs.svg#icon-cat-5"}>
                                     </use>
                                 </svg>
@@ -130,7 +130,7 @@ const LetWorkBeDone = () => {
                     <Link href={"/categories/business"}>
                         <a>
                             <div className={"freelance-grid-child freelance"}>
-                                <svg className={"h-16 mb-2"}>
+                                <svg className={"h-8 mb-2"}>
                                     <use xlinkHref={"/images/symbol-defs.svg#icon-cat-6"}>
                                     </use>
                                 </svg>
@@ -147,7 +147,7 @@ const LetWorkBeDone = () => {
                     <Link href={"/categories/fun_lifestyle"}>
                         <a>
                             <div className={"freelance-grid-child freelance"}>
-                                <svg className={"h-16 mb-2"}>
+                                <svg className={"h-8 mb-2"}>
                                     <use xlinkHref={"/images/symbol-defs.svg#icon-cat-7"}>
                                     </use>
                                 </svg>
@@ -164,7 +164,7 @@ const LetWorkBeDone = () => {
                     <Link href={"/categories/music_audio"}>
                         <a>
                             <div className={"freelance-grid-child freelance"}>
-                                <svg className={"h-16 mb-2"}>
+                                <svg className={"h-8 mb-2"}>
                                     <use xlinkHref={"/images/symbol-defs.svg#icon-cat-8"}>
                                     </use>
                                 </svg>
@@ -181,7 +181,7 @@ const LetWorkBeDone = () => {
                     <Link href={"/categories/software_packages"}>
                         <a>
                             <div className={"freelance-grid-child freelance hover:scale-50"}>
-                                <svg className={"h-16 mb-2"}>
+                                <svg className={"h-8 mb-2"}>
                                     <use xlinkHref={"/images/symbol-defs.svg#icon-cat-9"}>
                                     </use>
                                 </svg>
