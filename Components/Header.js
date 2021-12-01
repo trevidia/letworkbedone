@@ -1,11 +1,9 @@
 import Link from "next/link";
 import {useState} from "react";
-import {useRouter} from "next/router";
 
 // Top most nav bar
 const Header = () => {
     const [focus, setFocus] = useState(false);
-    const router = useRouter();
     const handleFocusIn = () => {
         setFocus(true);
     }

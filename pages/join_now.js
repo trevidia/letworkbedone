@@ -5,10 +5,11 @@ import {useEffect} from "react";
 const JoinNow = ()=>{
     const router = useRouter();
      async function handleClick(){
-            const data = await axios.get('http://localhost:8000/api/login?code=2321');
-         console.log(data.data)
-            await router.push(data.data[0].data);
-        }
+         const {data} = await axios.get('http://localhost:8000/api/g_login');
+         console.log(data.url)
+         await router.push(data.url);
+
+     }
 
     return (
         <>
