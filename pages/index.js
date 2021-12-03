@@ -8,6 +8,7 @@ import GigCard from "../Components/ProposalComponents/GigCard";
 
 
 const LetWorkBeDone = ({user, token}) => {
+
     const {dispatch} = useContext(UserContext);
     if (user) {
         const users = {...JSON.parse(user), token: token};
@@ -211,7 +212,7 @@ export default LetWorkBeDone;
 
 export const getServerSideProps = async ({req}) => {
     try {
-        await axios.get(`${process.env.DOMAIN}/sanctum/csrf-cookie`);
+        await axios.get(`${process.env.NEXT_PUBLIC_DOMAIN}/sanctum/csrf-cookie`);
         const token = JSON.parse(req.cookies.token ?? null);
         const user = req.cookies.user ?? null;
         // const config = token && {
