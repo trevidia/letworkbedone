@@ -5,7 +5,7 @@ const JoinNow = () => {
     const router = useRouter();
 
     async function handleGoogleLogin() {
-        const {data} = await axios.get('https://trevidia.com/api/g_login');
+        const {data} = await axios.get('https://trevidia.com/public/api/g_login');
         console.log(data.url)
         await router.push(data.url);
     }
