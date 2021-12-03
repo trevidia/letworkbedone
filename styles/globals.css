@@ -34,3 +34,18 @@
     @apply text-gray-800 text-lg my-3 block w-full
 }
 
+.dashboard_link {
+    @apply hover:text-link transition transition-colors
+}
+
+.dashboard_btn {
+    @apply w-20 ring-2 ring-red-200 hover:bg-blue-400 text-gray-100 rounded-sm bg-purple-700
+}
+
+.gig_sections_header {
+    @apply flex justify-between w-full
+}
+
+.gig_sections_title {
+    @apply text-2xl font-semibold text-gray-800
+}

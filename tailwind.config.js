@@ -29,13 +29,16 @@ module.exports = {
           "screen-10": "10vw",
       },
         backgroundColor: {
-            yellowgreen: "#83C724",
-            primary: "#0076CB",
-            secondary: "#2b3247",
-            alert: "#ffeeba"
+          yellowgreen: "#83C724",
+          primary: "#0076CB",
+          secondary: "#2b3247",
+          alert: "#ffeeba",
+          linkedin: "#0e76a8",
         },
         textColor: {
-            alert: "#856404"
+          alert: "#856404",
+          username: "#2718f7",
+          link: "#0076CB",
         },
         borderColor: {
             primary: "#0076CB"

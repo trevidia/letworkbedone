@@ -9,9 +9,6 @@ const DropDownNav = ({data}) => {
         const screenWidth = window.screen.width;
         const currentTargetWidth = dropDown.current.getBoundingClientRect().right;
         const parentTargetWidth = dropDown.current.parentNode.getBoundingClientRect().right;
-
-
-
         /*
              If the drop down is extending more than the size of the screen width then
              the dropdown would be resized to fit the screen
