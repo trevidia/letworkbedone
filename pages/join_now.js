@@ -8,7 +8,6 @@ import {actions, values} from "../lib/Constants";
 const JoinNow = () => {
     const router = useRouter();
     const {state, dispatch} = useContext(UserContext);
-
     async function handleGoogleLogin(response) {
         console.log(response.profileObj)
         dispatch({
