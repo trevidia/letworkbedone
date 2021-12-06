@@ -14,8 +14,6 @@ const DropDownNav = ({data}) => {
              the dropdown would be resized to fit the screen
          */
         if (screenWidth < currentTargetWidth) {
-            console.log(screenWidth - currentTargetWidth);
-            console.log(parentTargetWidth);
             dropDown.current.style.left = `${ - currentTargetWidth + parentTargetWidth + 25}px`
             // dropDown.current.style.float = "left";
             // dropDown.current.
