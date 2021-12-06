@@ -82,14 +82,3 @@ const Register = () => {
 }
 
 export default Register;
-
-export async function getServerSideProps(context) {
-    // const user = JSON.parse(req.cookies.user)
-    // const data = await fetch(`http://trevidia.dev:8000/login?code=${context.query.code}`);
-    // console.log(data);
-    return {
-        props: {
-            user: "fiaos"
-        }
-    }
-}
