@@ -7,28 +7,18 @@ import Link from "next/link";
 import GigCard from "../Components/ProposalComponents/GigCard";
 
 
-const LetWorkBeDone = ({user, token}) => {
+const LetWorkBeDone = () => {
 
-    const {dispatch} = useContext(UserContext);
-    if (user) {
-        const users = {...JSON.parse(user), token: token};
-        useEffect(
-            () => {
-                dispatch({
-                    type: actions.LOGIN,
-                    payload: JSON.stringify(users)
-                })
-                localStorage.setItem(values.USER, user);
-            }, []
-        )
+    const {state, dispatch} = useContext(UserContext);
+    if (state.user !== null) {
         return <>
-            <main className={"py-12 px-5  mx-8"}>
+            <main className={"py-2 px-5  mx-8"}>
                 {/*Dashboard Header*/}
                 <section className={"flex my-3 "}>
                     <div className={"w-3/12 px-1"}>
                         <div className={"border border-gray-300 h-64 px-1 py-10"}>
                             <div className={"font-semibold mb-3 mx-2 px-2"}>
-                                Welcome, <span className={"text-username"}>Username</span>
+                                Welcome, <span className={"text-username capitalize"}>{state.user.username}</span>
                             </div>
                             <div className={"flex border-t border-b border-gray-300 py-5 mx-2 text-sm"}>
                                 <div className={'mx-2'}>
@@ -201,36 +191,32 @@ const LetWorkBeDone = ({user, token}) => {
             </main>
         </>
     }
-    useEffect(() => {
-        localStorage.clear()
-    })
     return <IndexBody/>
 }
 
 export default LetWorkBeDone;
 
-
-export const getServerSideProps = async ({req}) => {
-    try {
-        await axios.get(`${process.env.NEXT_PUBLIC_DOMAIN}/sanctum/csrf-cookie`);
-        const token = JSON.parse(req.cookies.token ?? null);
-        const user = req.cookies.user ?? null;
-        // const config = token && {
-        //     headers: { Authorization: `Bearer ${token}` }
-        // }
-
-        return {
-            props: {
-                user,
-                token
-            },
-        }
-    } catch (e) {
-        return {
-            props: {
-                user: null,
-                token: null
-            }
-        }
-    }
-}
+//
+// export const getServerSideProps = async ({req}) => {
+//     try {
+//         const token = JSON.parse(req.cookies.token ?? null);
+//         const user = req.cookies.user ?? null;
+//         // const config = token && {
+//         //     headers: { Authorization: `Bearer ${token}` }
+//         // }
+//
+//         return {
+//             props: {
+//                 user,
+//                 token
+//             },
+//         }
+//     } catch (e) {
+//         return {
+//             props: {
+//                 user: null,
+//                 token: null
+//             }
+//         }
+//     }
+// }

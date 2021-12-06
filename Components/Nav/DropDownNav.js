@@ -14,8 +14,6 @@ const DropDownNav = ({data}) => {
              the dropdown would be resized to fit the screen
          */
         if (screenWidth < currentTargetWidth) {
-            console.log(screenWidth - currentTargetWidth);
-            console.log(parentTargetWidth);
             dropDown.current.style.left = `${ - currentTargetWidth + parentTargetWidth + 25}px`
             // dropDown.current.style.float = "left";
             // dropDown.current.
@@ -25,7 +23,7 @@ const DropDownNav = ({data}) => {
     bg-white shadow-md border-t border-gray-300 z-20 group-hover:grid grid-rows-6 grid-flow-row grid-cols-3 auto-rows-auto gap-x-3 gap-y-1  h-max text-lg hidden right-auto">
         {
             data.subCategories.map((element, index) => {
-                return <li key={index} className={"w-60"}>
+                return <li key={index} className={"w-60 h-10 my-1"}>
                     <Link href={`/categories/${data.title.replace(" & ", "_")
                         .replaceAll(" ", "_").toLowerCase()}/${element.replace(" & ", "_")
                         .replaceAll(" ", "_").toLowerCase()}`}>
