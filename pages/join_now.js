@@ -8,7 +8,7 @@ import {actions, values} from "../lib/Constants";
 const JoinNow = () => {
     const router = useRouter();
     const {state, dispatch} = useContext(UserContext);
-    async function handleGoogleLogin(response) {
+    const handleGoogleLogin = async (response) => {
         console.log(response.profileObj)
         dispatch({
                 type: actions.LOGIN,
@@ -19,6 +19,10 @@ const JoinNow = () => {
         );
         localStorage.setItem(values.USER, JSON.stringify({...response.profileObj, username: null}));
         await router.push('/register');
+    }
+
+    const handleGoogleLoginFailure = (response) => {
+        console.log(response)
     }
 
     return (
@@ -42,7 +46,7 @@ const JoinNow = () => {
                         )}
                         buttonText="Login"
                         onSuccess={handleGoogleLogin}
-                        onFailure={handleGoogleLogin}
+                        onFailure={handleGoogleLoginFailure}
                         cookiePolicy={'single_host_origin'}
                     />
                     <div
