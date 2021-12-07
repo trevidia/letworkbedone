@@ -3,6 +3,7 @@ import {useContext, useEffect, useRef, useState} from "react";
 import {UserContext} from "../lib/UserContext";
 import {actions, values} from "../lib/Constants";
 import {useRouter} from "next/router";
+import SubProfileDropdown from "./Nav/SubProfileDropdown";
 
 // Top most nav bar
 const Header = () => {
@@ -16,7 +17,7 @@ const Header = () => {
     useEffect(
         () => {
             window.addEventListener('click', (e) => {
-                if (!(e.target === usernameLink.current || e.target.parentElement === usernameLink.current || e.target.parentElement.parentElement === usernameLink.current)) {
+                if (!(e.target === usernameLink.current || e.target.parentElement === usernameLink.current)) {
                     setUsernameClick(false);
                 }
             })
@@ -34,7 +35,8 @@ const Header = () => {
         setFocus(false)
     }
 
-    function handleClick() {
+    const handleClick = (e) => {
+        e.stopPropagation();
         setUsernameClick(true);
     }
 
@@ -176,59 +178,92 @@ const Header = () => {
 
                                         </div>
                                         {
+                                            // If profile link was clicked a dropdown route appears
                                             usernameClick && <div
-                                                className={"absolute my-3 z-10 border border-gray-300 w-48 bg-white font-normal text-base px-3 py-4"}>
+                                                className={"absolute my-3 z-30 border border-gray-300 w-48 bg-white font-normal text-base py-4"}>
                                                 <ul>
-                                                    <li className={"py-1"}>
+                                                    <li>
                                                         <Link href={`/users/${user.username}/dashboard`}>
-                                                            <a>
+                                                            <a className={"py-1 px-3"}>
                                                                 Dashboard
                                                             </a>
                                                         </Link>
                                                     </li>
-                                                    <li className={"py-1"}>
-                                                        <div className={"flex "}>
-                                                      <span>
-                                                      Selling
-                                                  </span>
-                                                            <img src={"/images/svg/arrow_drop_down.svg"} alt={"icon"}/>
-                                                        </div>
+                                                    <li className={"py-1 "}>
+                                                        <SubProfileDropdown title={"Selling"} subList={[
+                                                            {
+                                                                title: "My Gigs",
+                                                                url: `/users/${user.username}/proposals/view_proposals`,
+                                                            },
+                                                            {
+                                                                title: "Create Gig",
+                                                                url: `/users/${user.username}/proposals/create_proposal`,
+                                                            }
+                                                        ]}/>
                                                     </li>
                                                     <li className={"py-1"}>
-                                                        <div className={"flex "}>
-                                                      <span>
-                                                      Buying
-                                                  </span>
-                                                            <img src={"/images/svg/arrow_drop_down.svg"} alt={"icon"}/>
-                                                        </div>
+                                                        <SubProfileDropdown title={"Buying"} subList={[
+                                                            {
+                                                                title: "Orders",
+                                                                url: `/users/${user.username}/buying_orders`,
+                                                            },
+                                                            {
+                                                                title: "Purchases",
+                                                                url: `/users/${user.username}/purchases`,
+                                                            },
+                                                            {
+                                                                title: "Favorites",
+                                                                url: `/users/${user.username}/favorites`,
+                                                            }
+                                                        ]}/>
                                                     </li>
                                                     <li className={"py-1"}>
-                                                        <div className={"flex "}>
-                                                      <span>
-                                                      Requests
-                                                  </span>
-                                                            <img src={"/images/svg/arrow_drop_down.svg"} alt={"icon"}/>
-                                                        </div>
+                                                        <SubProfileDropdown title={"Requests"} subList={[
+                                                            {
+                                                                title: "Post A Request",
+                                                                url: `/users/${user.username}/request/post_request`,
+                                                            },
+                                                            {
+                                                                title: "Manage Request",
+                                                                url: `/users/${user.username}/requests/manage_requests`,
+                                                            }
+                                                        ]}/>
                                                     </li>
                                                     <li className={"py-1"}>
-                                                        <div className={"flex "}>
-                                                      <span>
-                                                      Contacts
-                                                  </span>
-                                                            <img src={"/images/svg/arrow_drop_down.svg"} alt={"icon"}/>
-                                                        </div>
+                                                        <SubProfileDropdown title={"Contacts"} subList={[
+                                                            {
+                                                                title: "My Buyers",
+                                                                url: `/users/${user.username}/manage_contacts?my_buyers`,
+                                                            },
+                                                            {
+                                                                title: "My Sellers",
+                                                                url: `/users/${user.username}/manage_contacts?my_sellers`,
+                                                            },
+                                                        ]}/>
                                                     </li>
-                                                    <li className={"py-1"}>Inbox Messages</li>
-                                                    <li className={"py-1"}>My Profile</li>
+                                                    <li className={"py-1 px-3"}>
+                                                        <Link href={`/users/${user.username}/inbox`}>
+                                                            Inbox Messages
+                                                        </Link>
+                                                    </li>
+                                                    <li className={"py-1 px-3"}>
+                                                        <Link href={`/${user.username}`}>
+                                                            My Profile
+                                                        </Link>
+                                                    </li>
                                                     <li className={"py-1"}>
-                                                        <div className={"flex "}>
-                                                      <span>
-                                                      Settings
-                                                      </span>
-                                                            <img src={"/images/svg/arrow_drop_down.svg"} alt={"icon"}/>
-                                                        </div>
+                                                        <SubProfileDropdown title={"Settings"} subList={[
+                                                            {
+                                                                title: "Profile Settings",
+                                                                url: `/users/${user.username}/settings?profile_settings`,
+                                                            },
+                                                            {
+                                                                title: "Account Settings",
+                                                                url: `/users/${user.username}/settings?account_settings`,
+                                                            }
+                                                        ]}/>
                                                     </li>
-                                                    <li className={"py-1 cursor-pointer"} onClick={() => {
+                                                    <li className={"py-1 cursor-pointer px-3"} onClick={() => {
                                                         dispatch({
                                                             type: actions.LOGOUT,
                                                         });
@@ -252,7 +287,6 @@ const Header = () => {
                                         $0.00
                                     </div>
                                 </li>
-
                             </ul>
                         </>
                     }

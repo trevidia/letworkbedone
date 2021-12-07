@@ -18,10 +18,10 @@ const CustomerSupport = () => {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("Subject is ", subject);
-        console.log("Message is ", message);
-        console.log("Order Number is ", orderNumber);
-        console.log("Role is ", role);
+        // console.log("Subject is ", subject);
+        // console.log("Message is ", message);
+        // console.log("Order Number is ", orderNumber);
+        // console.log("Role is ", role);
     }
     return (
         <>

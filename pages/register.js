@@ -1,4 +1,3 @@
-import GoogleLogin from "react-google-login";
 import {useContext, useEffect, useState} from "react";
 import {UserContext} from "../lib/UserContext";
 import {actions, values} from "../lib/Constants";
@@ -18,7 +17,7 @@ const Register = () => {
         getLocalStorage()
     }, [router])
 
-    function handleSubmit(e) {
+    const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(
             {

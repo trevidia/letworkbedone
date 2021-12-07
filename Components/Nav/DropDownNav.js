@@ -15,9 +15,8 @@ const DropDownNav = ({data}) => {
          */
         if (screenWidth < currentTargetWidth) {
             dropDown.current.style.left = `${ - currentTargetWidth + parentTargetWidth + 25}px`
-            // dropDown.current.style.float = "left";
-            // dropDown.current.
         }
+
     }, [data])
     return <ul ref={dropDown} className="absolute m-auto left-0 w-max px-4 py-7
     bg-white shadow-md border-t border-gray-300 z-20 group-hover:grid grid-rows-6 grid-flow-row grid-cols-3 auto-rows-auto gap-x-3 gap-y-1  h-max text-lg hidden right-auto">
