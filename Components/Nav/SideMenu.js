@@ -26,17 +26,17 @@ const SideMenu = () => {
     return (
         <nav>
             {
-                user && <div ref={dropDown}
-                             className={"fixed h-screen bg-black bg-opacity-5 backdrop-filter backdrop-brightness-50 z-40 w-full " + (!isOpen && "hidden")}>
-                    <div className={"bg-white relative h-screen w-72 overflow-auto"}>
-                        {/*Close Button*/}
-                        <div className={"flex w-full justify-end px-2 py-2"}>
-                            <div className={"hover:bg-red-400 rounded-sm p-1 fixed"}>
-                                <button onClick={() => setIsOpen(false)} className={"justify-center items-center flex"}>
-                                    <Image src={'/images/svg/close_icon.svg'} width={15} height={15} alt={"close_btn"}/>
-                                </button>
-                            </div>
-                        </div>
+               <div ref={dropDown}
+                    className={"fixed h-screen bg-black bg-opacity-5 backdrop-filter backdrop-brightness-50 z-40 w-full " + (!isOpen && "hidden")}>
+                   <div className={"bg-white relative h-screen w-72 overflow-auto"}>
+                       {/*Close Button*/}
+                       <div className={"flex w-full justify-end px-2 py-2"}>
+                           <div className={"hover:bg-red-400 rounded-sm p-1 fixed"}>
+                               <button onClick={() => setIsOpen(false)} className={"justify-center items-center flex"}>
+                                   <Image src={'/images/svg/close_icon.svg'} width={15} height={15} alt={"close_btn"}/>
+                               </button>
+                           </div>
+                       </div>
                         <div className={"pt-2 px-4"}>
                             <Image src={"/images/main_logo.png"} width={150} height={35} alt={"logo"}/>
                             <div className={""}>
@@ -48,15 +48,16 @@ const SideMenu = () => {
                                             </a>
                                         </Link>
                                     </li>
+
                                     <li className={"py-2"}>
-                                        <Link href={`/users/${user.username}/dashboard`}>
+                                        <Link href={user ? `/users/${user.username}/dashboard` : '/join_now'}>
                                             <a>
                                                 Dashboard
                                             </a>
                                         </Link>
                                     </li>
                                     <li className={"py-2"}>
-                                        <Link href={`/users/${user.username}/settings`}>
+                                        <Link href={user ? `/users/${user.username}/settings` : '/join_now'}>
                                             <a>
                                                 Settings
                                             </a>
@@ -68,7 +69,8 @@ const SideMenu = () => {
                                         </h3>
                                         <ul className={"ml-2 w-full"}>
                                             <li className={"py-2"}>
-                                                <Link href={`/users/${user.username}/requests/post_request`}>
+                                                <Link
+                                                    href={user ? `/users/${user.username}/requests/post_request` : '/join_now'}>
                                                     <a>
                                                         Post a request
                                                     </a>
@@ -76,7 +78,7 @@ const SideMenu = () => {
                                             </li>
 
                                             <li className={"py-2"}>
-                                                <Link href={`/users/${user.username}/cart`}>
+                                                <Link href={user ? `/users/${user.username}/cart` : "/join_now"}>
                                                     <a>
                                                         Cart
                                                     </a>
@@ -84,7 +86,7 @@ const SideMenu = () => {
                                             </li>
 
                                             <li className={"py-2"}>
-                                                <Link href={`/users/${user.username}/favorites`}>
+                                                <Link href={user ? `/users/${user.username}/favorites` : "/join_now"}>
                                                     <a>
                                                         Favorites
                                                     </a>
@@ -98,14 +100,16 @@ const SideMenu = () => {
                                         </h3>
                                         <ul className={"ml-2 w-full"}>
                                             <li className={"py-2 "}>
-                                                <Link href={`/users/${user.username}/proposals/create_proposal`}>
+                                                <Link
+                                                    href={user ? `/users/${user.username}/proposals/create_proposal` : "/join_now"}>
                                                     <a>
                                                         Create A Gig
                                                     </a>
                                                 </Link>
                                             </li>
                                             <li className={"py-2"}>
-                                                <Link href={`/users/${user.username}/proposals/view_proposals`}>
+                                                <Link
+                                                    href={user ? `/users/${user.username}/proposals/view_proposals` : "/join_now"}>
                                                     <a>
                                                         View Proposals
                                                     </a>

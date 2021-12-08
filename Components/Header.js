@@ -46,10 +46,10 @@ const Header = () => {
     }
 
     return <>
-        <div className={"h-12 lg:h-20 text-xs font-semibold md:border-b lg:border-0 border-gray-300"}>
+        <div className={"h-12 lg:h-20 text-xs font-semibold border-b lg:border-0 border-gray-300"}>
             <header className={" h-full px-5 flex justify-between"}>
 
-                <div className={"flex text-tiny " + (!hasUser && "justify-end w-3/4 ")}>
+                <div className={"flex text-tiny " + (!hasUser && "justify-start lg:justify-end md:w-1/3 lg:w-3/4 ")}>
                     {/* Logo for let work be done*/}
                     <div className={'lg:hidden flex'}>
                         <Image
@@ -124,7 +124,7 @@ const Header = () => {
                                 </ul>
                             </div>
                             {/*    Buttons for signing up and for join now*/}
-                            <div className={"h-full flex items-center md:ml-0 ml-2 sm:w-full lg:w-max justify-end"}>
+                            <div className={"h-full flex items-center md:ml-0 ml-2 w-full lg:w-max justify-end"}>
                                 <button
                                     className={"w-20 bg-purple-800 hover:bg-purple-700 text-gray-100 md:h-10 h-8 rounded-md mx-2 font-semibold"}>
                                     Sign In
@@ -142,15 +142,15 @@ const Header = () => {
                     }
                     {
                         user !== null && user.username !== null && <>
-                            <ul className={"lg:flex justify-end w-full h-full pr-6"}>
-                                <li className={"h-full hidden lg:flex items-center mx-1"}>
+                            <ul className={"flex justify-end w-full h-full lg:pr-6"}>
+                                <li className={"h-full hidden md:flex items-center mx-1"}>
                                     <Link href={`/users/${user.username}/requests/post_request`}>
                                         <a className={"uppercase hover:text-link"}>
                                             Post A request
                                         </a>
                                     </Link>
                                 </li>
-                                <li className={" h-full  hidden lg:flex items-center mx-1"}>
+                                <li className={" h-full  hidden md:flex items-center mx-1"}>
                                     <Link href={`/users/${user.username}/proposals/create_proposal`}>
                                         <a className={"uppercase hover:text-link"}>
                                             Post A Gig
@@ -162,26 +162,26 @@ const Header = () => {
                                         Notifications
                                     </a>
                                 </li>
-                                <li className={" h-full hidden lg:flex items-center mx-1"}>
+                                <li className={" h-full flex items-center mx-1"}>
                                     <a className={"uppercase cursor-pointer "}>
                                         Inbox
                                     </a>
                                 </li>
-                                <li className={" h-full hidden lg:flex items-center mx-1"}>
+                                <li className={" h-full hidden md:flex items-center mx-1"}>
                                     <Link href={`/users/${user.username}/favorites`}>
                                         <a className={"uppercase cursor-pointer hover:text-link"}>
                                             Favorites
                                         </a>
                                     </Link>
                                 </li>
-                                <li className={" h-full hidden lg:flex items-center mx-1"}>
+                                <li className={" h-full hidden md:flex items-center mx-1"}>
                                     <Link href={`/users/${user.username}/cart`}>
                                         <a className={"uppercase hover:text-link"}>
                                             Cart
                                         </a>
                                     </Link>
                                 </li>
-                                <li className={" h-full hidden lg:flex items-center mx-1 "}>
+                                <li className={" h-full flex items-center mx-1 "}>
                                     <div className={"relative block"}
                                          onClick={handleClick}
                                          ref={usernameLink}>
@@ -196,7 +196,7 @@ const Header = () => {
                                         {
                                             // If profile link was clicked a dropdown route appears
                                             usernameClick && <div
-                                                className={"absolute my-3 z-30 border border-gray-300 w-48 bg-white font-normal text-base py-4"}>
+                                                className={"absolute my-3 z-30 right-0 lg:left-0 border border-gray-300 w-48 bg-white font-normal text-base py-4"}>
                                                 <ul>
                                                     <li>
                                                         <Link href={`/users/${user.username}/dashboard`}>

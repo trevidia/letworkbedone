@@ -28,25 +28,38 @@ const JoinNow = () => {
         <main className={"py-20 flex items-center justify-center"}>
             <div className={"rounded-sm shadow-lg h-72 w-screen-40 border border-gray-200 bg-white py-10 px-4"}>
                 <h2 className={"font-semibold text-3xl flex justify-center mb-10"}>Get your free account</h2>
-                <GoogleLogin
-                    clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}
-                    render={renderProps => (
-                        <button
-                            onClick={renderProps.onClick}
-                            disabled={renderProps.disabled}
-                            className={"h-7 bg-blue-500 flex items-center rounded-full w-2/4 cursor-pointer mb-5 m-auto text-sm text-gray-100"}>
-                            <img src={"/images/googlelogin.png"} className={"h-6 w-6 rounded-full"}
-                                 alt={"google logo"}/>
-                            <span className={"m-auto"}>
+                <div className={"relative w-full"}>
+
+                    <GoogleLogin
+                        clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}
+                        render={renderProps => {
+                            return <>
+                                {
+                                    renderProps.disabled &&
+                                    <div className={"absolute z-10 flex justify-center w-full h-7 "}>
+                                        <div
+                                            className={"w-2/4 backdrop-grayscale backdrop-filter  bg-black bg-opacity-50 rounded-full"}>
+                                        </div>
+                                    </div>
+                                }
+                                <button
+                                    onClick={renderProps.onClick}
+                                    disabled={renderProps.disabled}
+                                    className={"h-7 bg-blue-500 flex items-center rounded-full w-2/4 cursor-pointer mb-5 m-auto text-sm text-gray-100"}>
+                                    <img src={"/images/googlelogin.png"} className={"h-6 w-6 rounded-full"}
+                                         alt={"google logo"}/>
+                                    <span className={"m-auto"}>
                             Sign up with Google
                             </span>
-                        </button>
-                    )}
-                    buttonText="Login"
-                    onSuccess={handleGoogleLogin}
-                    onFailure={handleGoogleLoginFailure}
-                    cookiePolicy={'single_host_origin'}
-                />
+                                </button>
+                            </>
+                        }}
+                        buttonText="Login"
+                        onSuccess={handleGoogleLogin}
+                        onFailure={handleGoogleLoginFailure}
+                        cookiePolicy={'single_host_origin'}
+                    />
+                </div>
                 <div
                     className={"h-7 bg-linkedin flex items-center rounded-full w-2/4 cursor-pointer mb-5 m-auto text-sm text-gray-100"}
                     onClick={() => "nothing"}
