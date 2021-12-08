@@ -1,5 +1,6 @@
 import Image from "next/image";
 import {useState} from "react";
+import RequestToolTip from "../../../../Components/RequestToolTip";
 
 const PostRequests = () => {
     const [charLeft, setCharLeft] = useState(0);
@@ -18,7 +19,7 @@ const PostRequests = () => {
                     <form>
                         <div className={" border border-gray-300 my-8 w-2/3 px-10 py-6"}>
                             {/* First Form section for the post request */}
-                            <div className={"flex border-b pb-10 border-gray-300"}>
+                            <div className={"flex group border-b z-0 pb-10 border-gray-300"}>
                                 <div>
                                     <Image src={"/images/comp/book.png"} width={64} quality={10} height={64}/>
                                 </div>
@@ -46,8 +47,14 @@ const PostRequests = () => {
                                         </span>
                                     </div>
                                 </div>
+                                {/* Tooltip */}
+                                <RequestToolTip
+                                    title={"Define in Details"}
+                                    description={"Include all the necessary details needed to complete your request."}
+                                    example={" if you are looking for a logo, you can specify your company name, business type, preferred color, etc."}
+                                />
                             </div>
-                            <div className={"py-6 flex border-b pb-10 border-gray-300"}>
+                            <div className={"py-6 group flex border-b pb-10 border-gray-300"}>
                                 <div>
                                     <Image src={"/images/comp/folder.png"} width={64} height={64}/>
                                 </div>
@@ -66,8 +73,13 @@ const PostRequests = () => {
                                         <option>Business</option>
                                     </select>
                                 </div>
+                                <RequestToolTip
+                                    title={"Refine your Request"}
+                                    description={"Choose the category and subcategory that best fits your request."}
+                                    example={" if you are looking for a logo, you should choose 'Logo Design' within the 'Graphics & Design' category."}
+                                />
                             </div>
-                            <div className={"py-2"}>
+                            <div className={"py-2 group mt-3"}>
                                 <h5>Once you place your order, when would you like your order delivered</h5>
                                 <div className={"py-6 flex border-b pb-10 border-gray-300"}>
                                     <div>
@@ -89,9 +101,13 @@ const PostRequests = () => {
                                         Days
                                     </span>
                                     </div>
+                                    <RequestToolTip
+                                        title={"Set a Delivery Time"}
+                                        description={"This is the amount of time the seller has to work on your order. Please note that a request for faster delivery may impact the price."}
+                                    />
                                 </div>
                             </div>
-                            <div className={"py-2"}>
+                            <div className={"py-2 group"}>
                                 <h5>What is your budget for this service? (Optional)</h5>
                                 <div className={"py-6 flex border-b pb-10 border-gray-300"}>
                                     <div>
@@ -113,6 +129,10 @@ const PostRequests = () => {
                                             className={"outline-none border border-gray-300 rounded-r-sm px-2 w-3/4 h-8 my-1 focus:ring ring-blue-200 focus:border-blue-400"}
                                         />
                                     </div>
+                                    <RequestToolTip
+                                        title={"Set Your Budget"}
+                                        description={"Enter an amount you are willing to spend for this service."}
+                                    />
                                 </div>
                             </div>
                             <div className={"mt-3 flex justify-end"}>
