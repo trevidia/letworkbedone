@@ -221,7 +221,7 @@ const Header = () => {
                                                         <SubProfileDropdown title={"Requests"} subList={[
                                                             {
                                                                 title: "Post A Request",
-                                                                url: `/users/${user.username}/request/post_request`,
+                                                                url: `/users/${user.username}/requests/post_request`,
                                                             },
                                                             {
                                                                 title: "Manage Request",
