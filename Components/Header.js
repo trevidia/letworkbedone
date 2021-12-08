@@ -4,6 +4,9 @@ import {UserContext} from "../lib/UserContext";
 import {actions, values} from "../lib/Constants";
 import {useRouter} from "next/router";
 import SubProfileDropdown from "./Nav/SubProfileDropdown";
+import {useHasUser} from "../lib/CustomHooks";
+import Image from "next/image";
+import {DrawerContext} from "../lib/DrawerContext";
 
 // Top most nav bar
 const Header = () => {
@@ -13,6 +16,8 @@ const Header = () => {
     const {state, dispatch} = useContext(UserContext);
     const {user} = state
     const router = useRouter();
+    const hasUser = useHasUser()
+    const [isOpen, setIsOpen] = useContext(DrawerContext);
 
     useEffect(
         () => {
@@ -44,30 +49,41 @@ const Header = () => {
         <div className={"h-12 lg:h-20 text-xs font-semibold md:border-b lg:border-0 border-gray-300"}>
             <header className={" h-full px-5 flex justify-between"}>
 
-                <div className={"w-3/4 flex justify-end text-tiny"}>
+                <div className={"flex text-tiny " + (!hasUser && "justify-end w-3/4 ")}>
                     {/* Logo for let work be done*/}
+                    <div className={'lg:hidden flex'}>
+                        <Image
+                            src={'/images/svg/menu.svg'}
+                            width={30} height={30} alt={"menu_btn"}
+                            onClick={() => {
+                                setIsOpen(true)
+                            }}/>
+                    </div>
                     <div className={"h-full items-center hidden lg:flex mx-8"}>
                         <Link href={"/"}>
                             <a>
                                 {/*<Image src={"/images/main_logo.png"} width={"100%"} height={"100%"} objectFit={"contain"} quality={100}/>*/}
-                                <img src={"/images/main_logo.png"} className={"w-max"} style={{width: "150px"}}
-                                     alt={"logo"}/>
+                                <Image src={"/images/main_logo.png"} width={150} height={35}
+                                       alt={"logo"}/>
                             </a>
                         </Link>
                     </div>
                     {/*    Search box for the finding services*/}
-                    <div className={" h-full hidden lg:flex items-center px-3"}>
-                        <div
-                            className={`border-2 border-gray-300 ${focus && "border-yellow-400"} rounded-md grid grid-cols-6 items-center overflow-hidden w-full h-max`}>
-                            <img src={"/images/svg/search_icon.svg"} className={"ml-1 my-1"} alt={"search icon"}/>
-                            <input type={"text"}
-                                   className={"focus:outline-none placeholder-gray-300 px-2 w-full col-span-3"}
-                                   onFocus={handleFocusIn} onBlur={handleFocusOut} placeholder={"Find Services"}/>
-                            <button className={"bg-yellow-400 hover:bg-yellow-300 h-full w-full col-span-2"}>
-                                Search
-                            </button>
+                    {
+                        !hasUser && <div className={" h-full hidden lg:flex items-center px-3"}>
+                            <div
+                                className={`border-2 border-gray-300 ${focus && "border-yellow-400"} rounded-md grid grid-cols-6 items-center overflow-hidden w-full h-max`}>
+                                <img src={"/images/svg/search_icon.svg"} className={"ml-1 my-1"} alt={"search icon"}/>
+                                <input type={"text"}
+                                       className={"focus:outline-none placeholder-gray-300 px-2 w-full col-span-3"}
+                                       onFocus={handleFocusIn} onBlur={handleFocusOut} placeholder={"Find Services"}/>
+                                <button className={"bg-yellow-400 hover:bg-yellow-300 h-full w-full col-span-2"}>
+                                    Search
+                                </button>
+                            </div>
                         </div>
-                    </div>
+                    }
+
                 </div>
                 <div className={"w-full flex"}>
 

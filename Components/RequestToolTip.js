@@ -2,8 +2,8 @@ import style from "../styles/card.module.css";
 import Image from "next/image";
 
 const RequestToolTip = ({description, example, title}) => {
-    return <div className={"flex justify-end z-10 inset-x-0 absolute w-full"}>
-        <div className={"group-hover:flex hidden pl-10 w-1/3 " + style.card}>
+    return <div className={"flex justify-end absolute left-2/3"}>
+        <div className={"group-hover:flex hidden pl-10 w-96 " + style.card}>
             <div
                 className={"text-sm w-3/4 bg-blue-200 py-3 px-4 "}>
                 <div className={"flex"}>

@@ -4,8 +4,8 @@ import RequestToolTip from "../../../../Components/RequestToolTip";
 
 const PostRequests = () => {
     const [charLeft, setCharLeft] = useState(0);
-    const [days, setDays] = useState(null);
-    const [budget, setBudget] = useState(null);
+    const [days, setDays] = useState('');
+    const [budget, setBudget] = useState('');
     const [requestTitle, setRequestTitle] = useState('');
     const [requestDescription, setRequestDescription] = useState('');
     return (
@@ -19,7 +19,7 @@ const PostRequests = () => {
                     <form>
                         <div className={" border border-gray-300 my-8 w-2/3 px-10 py-6"}>
                             {/* First Form section for the post request */}
-                            <div className={"flex group border-b z-0 pb-10 border-gray-300"}>
+                            <div className={"flex group border-b z-20 pb-10 border-gray-300"}>
                                 <div>
                                     <Image src={"/images/comp/book.png"} width={64} quality={10} height={64}/>
                                 </div>
@@ -54,7 +54,7 @@ const PostRequests = () => {
                                     example={" if you are looking for a logo, you can specify your company name, business type, preferred color, etc."}
                                 />
                             </div>
-                            <div className={"py-6 group flex border-b pb-10 border-gray-300"}>
+                            <div className={"py-6 group flex border-b z-20 pb-10 border-gray-300"}>
                                 <div>
                                     <Image src={"/images/comp/folder.png"} width={64} height={64}/>
                                 </div>
@@ -120,7 +120,7 @@ const PostRequests = () => {
                                         </span>
                                         <input
                                             onChange={(e) => {
-                                                setBudget(parseInt(e.target.value))
+                                                setBudget(e.target.value)
                                             }}
                                             value={budget}
                                             type={"number"}

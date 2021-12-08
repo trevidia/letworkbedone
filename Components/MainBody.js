@@ -2,28 +2,22 @@ import Header from "./Header";
 import CategoryNav from "./Nav/CategoryNav";
 import Footer from "./Footer";
 import Head from "next/head";
-import {useRouter} from "next/router";
-import {useEffect, useState} from "react";
 import SellerNav from "./Nav/SellerNav";
+import SideMenu from "./Nav/SideMenu";
+import {useHasUser} from "../lib/CustomHooks";
+import {DrawerProvider} from "../lib/DrawerContext";
 
 const MainBody = ({children}) => {
-    const [hasUser, setHasUser] = useState(false);
-    const router = useRouter();
-    useEffect(
-        () => {
-            if (router.pathname.includes("users")) {
-                setHasUser(true)
-            } else {
-                setHasUser(false)
-            }
-        }, [router.pathname]
-    )
+    const hasUser = useHasUser()
     return (
         <>
             <Head>
                 <title>Letworkbedone</title>
             </Head>
-            <Header/>
+            <DrawerProvider>
+                <SideMenu/>
+                <Header/>
+            </DrawerProvider>
             {
                 hasUser ? <SellerNav/> : <CategoryNav/>
             }

@@ -269,8 +269,6 @@ const CategoryNav = () => {
                                     {
                                         category && <DropDownNav data={category}/>
                                     }
-
-
                                 </li>)
                         })}
                     </ul>
