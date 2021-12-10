@@ -258,7 +258,7 @@ const CategoryNav = () => {
                     <ul className={"flex justify-around w-full px-4 h-full"}>
                         {categories.map((categoryTitle, index) => {
                             return (
-                                <li className={"block group relative h-full "} key={index}>
+                                <li className={"block group relative h-full "} key={categoryTitle + "cat" + index}>
                                     <Link href={`/categories/${categoryTitle.replace(" & ", "_")
                                         .replace(" ", "_").toLowerCase()}`}>
                                         <a className={"border-b-2 group-hover:border-pink-600 px-2  border-transparent h-full items-center inline-flex"}

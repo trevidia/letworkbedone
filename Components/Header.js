@@ -50,7 +50,7 @@ const Header = () => {
             <header className={" h-full px-5 flex justify-between"}>
 
                 <div className={"flex text-tiny " + (!hasUser && "justify-start lg:justify-end md:w-1/3 lg:w-3/4 ")}>
-                    {/* Logo for let work be done*/}
+                    {/*side menu hamburger menu*/}
                     <div className={'lg:hidden flex'}>
                         <Image
                             src={'/images/svg/menu.svg'}
@@ -60,6 +60,7 @@ const Header = () => {
                             }}/>
                     </div>
                     <div className={"h-full items-center hidden lg:flex mx-8"}>
+                        {/* Logo for let work be done*/}
                         <Link href={"/"}>
                             <a>
                                 {/*<Image src={"/images/main_logo.png"} width={"100%"} height={"100%"} objectFit={"contain"} quality={100}/>*/}

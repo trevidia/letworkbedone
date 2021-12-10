@@ -9,7 +9,7 @@ const HoverDropDown = ({title, subList}) => {
             </span>
             <Image src={"/images/svg/arrow_drop_down.svg"} width={"20"} height={"30"}/>
         </div>
-        <div className={"absolute hidden w-max inset-x-0 bg-white border border-gray-300 py-2 group-hover:inline"}>
+        <div className={"absolute hidden w-max z-10 inset-x-0 bg-white border border-gray-300 py-2 group-hover:inline"}>
             <ul>
                 {
                     subList.map((element) => {

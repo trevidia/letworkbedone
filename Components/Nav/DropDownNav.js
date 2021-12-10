@@ -22,7 +22,7 @@ const DropDownNav = ({data}) => {
     bg-white shadow-md border-t border-gray-300 z-20 group-hover:grid grid-rows-6 grid-flow-row grid-cols-3 auto-rows-auto gap-x-3 gap-y-1  h-max text-lg hidden right-auto">
         {
             data.subCategories.map((element, index) => {
-                return <li key={index} className={"w-60 h-10 my-1"}>
+                return <li key={element + "sub" + index} className={"w-60 h-10 my-1"}>
                     <Link href={`/categories/${data.title.replace(" & ", "_")
                         .replaceAll(" ", "_").toLowerCase()}/${element.replace(" & ", "_")
                         .replaceAll(" ", "_").toLowerCase()}`}>
