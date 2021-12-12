@@ -19,16 +19,17 @@ const Header = () => {
     const hasUser = useHasUser()
     const [isOpen, setIsOpen] = useContext(DrawerContext);
 
+    const handleHeaderClick = (e) => {
+        if (!(e.target === usernameLink.current || e.target.parentElement === usernameLink.current)) {
+            setUsernameClick(false);
+        }
+    }
+
     useEffect(
         () => {
-            window.addEventListener('click', (e) => {
-                if (!(e.target === usernameLink.current || e.target.parentElement === usernameLink.current)) {
-                    setUsernameClick(false);
-                }
-            })
+            window.addEventListener('click', handleHeaderClick)
             return () => {
-                window.removeEventListener('click', () => {
-                })
+                window.removeEventListener('click', handleHeaderClick)
             };
         }, []
     )

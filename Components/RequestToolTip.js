@@ -1,4 +1,4 @@
-import style from "../styles/card.module.css";
+import style from "../styles/customCss.module.css";
 import Image from "next/image";
 
 const RequestToolTip = ({description, example, title}) => {

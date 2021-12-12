@@ -9,3 +9,13 @@
     top: 0;
     left: 0;
 }
+
+.text_editor ol li {
+    list-style: decimal;
+    margin-left: 3rem;
+}
+
+.text_editor ul li {
+    list-style: disc;
+    margin-left: 3rem;
+}

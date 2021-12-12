@@ -1,17 +1,11 @@
-import ProposalNav from "../Nav/ProposalNav";
 import {useState} from "react";
-
-const range = () => {
-    let x = [];
-    for (let i = 0; i <= 30; i++) {
-        x.push(i);
-    }
-    return x;
-}
+import GigSpecificExtra from "../GigSpecificExtra";
+import range from "../../lib/UseFullFunctions";
+import AddUserExtraService from "../AddUserExtraService";
 
 const ScopePricing = () => {
     const [multiPackage, setMultiPackage] = useState(false);
-    const handleChecked = (e) => {
+    const handleChecked = () => {
         if (multiPackage) {
             setMultiPackage(false)
         } else {
@@ -22,9 +16,9 @@ const ScopePricing = () => {
         <>
             <main className={"py-20 bg-gray-100 px-32"}>
                 <div className={"flex justify-between border-b border-gray-300 pb-4"} style={{width: "600px"}}>
-                    <span>
+                    <h4 className={"text-xl font-semibold"}>
                         Pricing
-                    </span>
+                    </h4>
                     <div className={"flex"}>
                         <span>
                             3 Packages:
@@ -39,7 +33,7 @@ const ScopePricing = () => {
                         </div>
                     </div>
                 </div>
-                <div className={" py-5 px-3 bg-white mt-8 rounded-md"} style={{width: "600px"}}>
+                <div className={" py-5 px-3 bg-white mt-8 rounded-md border border-gray-300"} style={{width: "600px"}}>
                     <div className={"relative"}>
                         <table className={"w-full text-sm border border-gray-200 table-fixed"}>
                             <thead className={"bg-gray-100 h-10 border-b border-gray-200 text-xl text-left"}>
@@ -147,8 +141,8 @@ const ScopePricing = () => {
                             </tbody>
                         </table>
                         {
-                            multiPackage && <div
-                                className={"absolute z-20 right-0 top-0 bg-white bg-opacity-50 backdrop-filter backdrop-blur-sm h-full"}
+                            !multiPackage && <div
+                                className={"absolute border border-gray-300 z-20 right-0 top-0 bg-white bg-opacity-50 backdrop-filter backdrop-blur-sm h-full"}
                                 style={{width: '298px'}}>
                                 <div className={"w-4/6 pt-20 text-center text-xl m-auto"}>
 
@@ -164,6 +158,18 @@ const ScopePricing = () => {
                         }
                     </div>
 
+                </div>
+                <div className={"mt-8"}>
+                    <div>
+                        <h4 className={"text-xl mb-3"}> My Proposal Extras </h4>
+                    </div>
+                    <div className={"bg-white rounded-md border text-xs border-gray-300"} style={{width: "600px"}}>
+                        {/*    Gig specific extras*/}
+                        <GigSpecificExtra gigExtraTitle={"Source Code"}/>
+                        <GigSpecificExtra gigExtraTitle={"Deployment"}/>
+                        {/*  Add extra services option  */}
+                        <AddUserExtraService/>
+                    </div>
                 </div>
                 {/*Cancel Gig creation and save and continue*/}
                 <div className={"flex justify-between mt-8"} style={{width: '600px'}}>
