@@ -216,6 +216,18 @@ const Header = () => {
                                                             {
                                                                 title: "Create Gig",
                                                                 url: `/users/${user.username}/proposals/create_proposal`,
+                                                            },
+                                                            {
+                                                                title: "Buyer Requests",
+                                                                url: `/users/${user.username}/buyers_request`,
+                                                            },
+                                                            {
+                                                                title: "Revenues",
+                                                                url: `/users/${user.username}/revenues`,
+                                                            },
+                                                            {
+                                                                title: "Withdrawal Requests",
+                                                                url: `/users/${user.username}/withdrawal_requests`,
                                                             }
                                                         ]}/>
                                                     </li>

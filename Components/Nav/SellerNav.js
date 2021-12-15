@@ -25,8 +25,20 @@ const SellerNav = () => {
                                     url: `/users/${user.username}/proposals/view_proposals`,
                                 },
                                 {
-                                    title: "Create Gig",
-                                    url: `/users/${user.username}/proposals/create_proposal`,
+                                    title: "Orders",
+                                    url: `/users/${user.username}/selling_orders`,
+                                },
+                                {
+                                    title: "Buyer Requests",
+                                    url: `/users/${user.username}/buyers_request`,
+                                },
+                                {
+                                    title: "Revenues",
+                                    url: `/users/${user.username}/revenues`,
+                                },
+                                {
+                                    title: "Withdrawal Requests",
+                                    url: `/users/${user.username}/withdrawal_requests`,
                                 }
                             ]}/>
                         </li>

@@ -77,3 +77,15 @@
 .dashboard_drop_filter_items {
     @apply hover:bg-gray-400 hover:text-gray-50 transition-colors py-2 px-5 cursor-pointer text-gray-700
 }
+
+.table_badge {
+    @apply bg-blue-700 h-5 flex items-center justify-center text-white w-4 ml-2 rounded-sm
+}
+
+.table_dynamic_link {
+    @apply flex items-center px-7 py-3  cursor-pointer border-b border-gray-300 hover:bg-gray-100 rounded-t-md
+}
+
+.table_active {
+    @apply border border-gray-300 border-b-0 rounded-t-md
+}

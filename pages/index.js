@@ -79,7 +79,7 @@ const LetWorkBeDone = () => {
                         <div className={"h-full px-6 pt-16 z-10 absolute top-0 inset-x-0"}>
                             <div className={"text-gray-100 w-4/5"}>
                                 <h1 className={"text-5xl mb-3"}>
-                                    Turn your Carrier Into Money making Machine
+                                    Turn your Career Into Money making Machine
                                 </h1>
                                 <p>Letworkbedone is the best platform that you will use to make money online . Its free
                                     to get started</p>

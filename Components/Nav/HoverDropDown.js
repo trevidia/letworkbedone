@@ -10,14 +10,16 @@ const HoverDropDown = ({title, subList}) => {
             <Image src={"/images/svg/arrow_drop_down.svg"} width={"20"} height={"30"}/>
         </div>
         <div className={"absolute hidden w-max z-10 inset-x-0 bg-white border border-gray-300 py-2 group-hover:inline"}>
-            <ul>
+            <ul className={"w-full"}>
                 {
                     subList.map((element) => {
                         return <li key={element.title + element.index}
-                                   className={"hover:bg-gray-300 hover:text-gray-900 px-3 py-2"}>
+                                   className={"hover:bg-gray-300 hover:text-gray-900 "}>
                             <Link href={element.url}>
-                                <a>
-                                    {element.title}
+                                <a className={"px-3 py-2 flex"}>
+                                    <p className={"w-full"}>
+                                        {element.title}
+                                    </p>
                                 </a>
                             </Link>
                         </li>
