@@ -149,7 +149,7 @@ const Footer = () => {
                           </Link>
                       </span>
                         <span className={"footer-text"}>
-                          <Link href={"/become_seller"}>
+                          <Link href={"/start_selling"}>
                               <a>
                                   Become a Seller
                               </a>

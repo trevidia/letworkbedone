@@ -116,7 +116,7 @@ const Header = () => {
                                         </Link>
                                     </li>
                                     <li className={"w-full h-full hidden lg:flex items-center"}>
-                                        <Link href={"/become_seller"}>
+                                        <Link href={"/start_selling"}>
                                             <a className={"uppercase"}>
                                                 Become A Seller
                                             </a>
