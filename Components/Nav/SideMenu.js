@@ -57,7 +57,8 @@ const SideMenu = () => {
                                         </Link>
                                     </li>
                                     <li className={"py-2"}>
-                                        <Link href={user ? `/users/${user.username}/settings` : '/join_now'}>
+                                        <Link
+                                            href={user ? `/users/${user.username}/settings/edit_profile` : '/join_now'}>
                                             <a>
                                                 Settings
                                             </a>

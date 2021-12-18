@@ -107,11 +107,11 @@ const SellerNav = () => {
                             <HoverDropDown title={"Settings"} subList={[
                                 {
                                     title: "Profile Settings",
-                                    url: `/users/${user.username}/settings?profile_settings`,
+                                    url: `/users/${user.username}/settings/edit_profile`,
                                 },
                                 {
                                     title: "Account Settings",
-                                    url: `/users/${user.username}/settings?account_settings`,
+                                    url: `/users/${user.username}/settings/account_settings`,
                                 }
                             ]}/>
                         </li>

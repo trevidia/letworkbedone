@@ -3,12 +3,27 @@ import GoogleLogin from "react-google-login";
 import {useContext} from "react";
 import {UserContext} from "../lib/UserContext";
 import {actions, values} from "../lib/Constants";
+import axios from "axios";
 
 const JoinNow = () => {
     const router = useRouter();
     const {dispatch} = useContext(UserContext);
     const handleGoogleLogin = async (response) => {
-        // console.log(response.profileObj)
+        console.log(response)
+        axios.defaults.withCredentials = true;
+        await axios.post('https://api.trevidia.com/api/login', {...response.profileObj, username: null},
+            // {
+            //     headers: {
+            //         'Content-Type': "multipart/form-data"
+            //     }
+            // }
+        ).then(
+            (response) => {
+                console.log(response);
+            }
+        ).catch((err) => {
+            console.log(err)
+        })
         dispatch({
                 type: actions.LOGIN,
                 payload: {
@@ -62,7 +77,11 @@ const JoinNow = () => {
                 </div>
                 <div
                     className={"h-7 bg-linkedin flex items-center rounded-full w-2/4 cursor-pointer mb-5 m-auto text-sm text-gray-100"}
-                    onClick={() => "nothing"}
+                    onClick={() => axios.get('https://trevidia.com/public/api/user').then((res) => {
+                        console.log(res)
+                    }).catch(err => {
+                        console.log(err)
+                    })}
                 >
                     <img src={"/images/linkedin_white.png"} className={"h-6 w-6 rounded-full"}
                          alt={"linkedin logo"}/>

@@ -56,14 +56,14 @@ const LetWorkBeDone = () => {
                                             </Link>
                                         </li>
                                         <li className={'my-1'}>
-                                            <Link href={"/users/user/settings"}>
+                                            <Link href={"/users/user/settings/edit_profile"}>
                                                 <a className={"dashboard_link"}>
                                                     Edit Profile
                                                 </a>
                                             </Link>
                                         </li>
                                         <li className={'my-1'}>
-                                            <Link href={"/users/user/settings?account_setting"}>
+                                            <Link href={"/users/user/settings/account_settings"}>
                                                 <a className={"dashboard_link"}>
                                                     Setting
                                                 </a>
