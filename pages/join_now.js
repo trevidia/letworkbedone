@@ -11,7 +11,7 @@ const JoinNow = () => {
     const handleGoogleLogin = async (response) => {
         console.log(response)
         axios.defaults.withCredentials = true;
-        await axios.post('https://api.trevidia.com/api/login', {...response.profileObj, username: null},
+        await axios.post('https://api.trevidia.com.ng/api/login', {...response.profileObj, username: null},
             // {
             //     headers: {
             //         'Content-Type': "multipart/form-data"
