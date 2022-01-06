@@ -6,13 +6,21 @@ import Gallery from "../../../../Components/forms/Gallery";
 import Overview from "../../../../Components/forms/Overview";
 import Publish from "../../../../Components/forms/Publish";
 import ProposalNav from "../../../../Components/Nav/ProposalNav";
+import {useEffect, useState} from "react";
 
 const CreateProposal = () => {
     const router = useRouter();
+    const [path, setPath] = useState('');
     const queries = router.query;
-    // console.log(router.asPath.split('?')[1])
     // get if the route has the property if it has it then return a particular form
-    switch (router.asPath.split('?')[1]) {
+    console.log(router.asPath.split('?')[1]);
+    useEffect(
+        () => {
+            const firstPath = router.asPath.split('?')[1];
+            if (firstPath) setPath(firstPath.split('&')[0]);
+        }, [router.asPath]
+    )
+    switch (path) {
         case "scope_pricing":
             return <><ProposalNav active={2}/><ScopePricing/></>
         case "description_faq":
@@ -23,8 +31,10 @@ const CreateProposal = () => {
             return <><ProposalNav active={5}/><Gallery/></>
         case "publish":
             return <><ProposalNav active={6}/><Publish/></>
-        default:
+        case "overview":
             return <><ProposalNav active={1}/><Overview/></>
+        default:
+            return "not available"
 
     }
 }

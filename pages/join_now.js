@@ -3,36 +3,44 @@ import GoogleLogin from "react-google-login";
 import {useContext} from "react";
 import {UserContext} from "../lib/UserContext";
 import {actions, values} from "../lib/Constants";
-import axios from "axios";
+import axios from "../lib/AxiosConfig";
+import {useLinkedIn} from "react-linkedin-login-oauth2";
 
 const JoinNow = () => {
     const router = useRouter();
     const {dispatch} = useContext(UserContext);
-    const handleGoogleLogin = async (response) => {
-        console.log(response)
-        axios.defaults.withCredentials = true;
-        await axios.post('https://api.trevidia.com.ng/api/login', {...response.profileObj, username: null},
-            // {
-            //     headers: {
-            //         'Content-Type': "multipart/form-data"
-            //     }
-            // }
-        ).then(
-            (response) => {
-                console.log(response);
-            }
-        ).catch((err) => {
-            console.log(err)
-        })
-        dispatch({
-                type: actions.LOGIN,
-                payload: {
-                    ...response.profileObj, username: null
+    const {linkedInLogin} = useLinkedIn({
+        clientId: '86vhj2q7ukf83q',
+        redirectUri: `${typeof window === 'object' && window.location.origin}/linkedin`, // for Next.js, you can use `${typeof window === 'object' && window.location.origin}/linkedin`
+        onSuccess: (code) => {
+            console.log(code);
+        },
+        onError: (error) => {
+            console.log(error);
+        },
+    });
+    const handleGoogleLogin = async (googleRes) => {
+        console.log(googleRes)
+        await axios.post('/login', {...googleRes.profileObj, username: null},)
+            .then(
+                (response) => {
+                    console.log(response);
+                    dispatch({
+                            type: actions.LOGIN,
+                            payload: {
+                                id: response.data.userId,
+                                tokenId: response.data.tokenId, ...googleRes.profileObj,
+                                username: null
+                            }
+                        }
+                    );
+                    localStorage.setItem(values.USER, JSON.stringify({...googleRes.profileObj, username: null}));
+                    router.push('/register');
                 }
-            }
-        );
-        localStorage.setItem(values.USER, JSON.stringify({...response.profileObj, username: null}));
-        await router.push('/register');
+            ).catch((err) => {
+                console.log(err.message)
+            })
+
     }
 
     const handleGoogleLoginFailure = (response) => {
@@ -77,11 +85,7 @@ const JoinNow = () => {
                 </div>
                 <div
                     className={"h-7 bg-linkedin flex items-center rounded-full w-2/4 cursor-pointer mb-5 m-auto text-sm text-gray-100"}
-                    onClick={() => axios.get('https://trevidia.com/public/api/user').then((res) => {
-                        console.log(res)
-                    }).catch(err => {
-                        console.log(err)
-                    })}
+                    onClick={linkedInLogin}
                 >
                     <img src={"/images/linkedin_white.png"} className={"h-6 w-6 rounded-full"}
                          alt={"linkedin logo"}/>

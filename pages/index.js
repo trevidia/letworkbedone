@@ -1,14 +1,14 @@
 import axios from "axios";
 import IndexBody from "../Components/IndexBody";
-import {useContext, useEffect} from "react";
+import {useContext, useEffect, useState} from "react";
 import {actions, values} from "../lib/Constants";
 import {UserContext} from "../lib/UserContext";
 import Link from "next/link";
 import GigCard from "../Components/ProposalComponents/GigCard";
+import {authenticateUser} from "../lib/Authentication";
 
 
-const LetWorkBeDone = () => {
-
+const LetWorkBeDone = ({user}) => {
     const {state, dispatch} = useContext(UserContext);
     if (state.user !== null) {
         return <>
@@ -18,7 +18,7 @@ const LetWorkBeDone = () => {
                     <div className={"w-3/12 px-1"}>
                         <div className={"border border-gray-300 h-64 px-1 py-10"}>
                             <div className={"font-semibold mb-3 mx-2 px-2"}>
-                                Welcome, <span className={"text-username capitalize"}>{state.user.username}</span>
+                                Welcome, <span className={"text-username capitalize"}>{user.username}</span>
                             </div>
                             <div className={"flex border-t border-b border-gray-300 py-5 mx-2 text-sm"}>
                                 <div className={'mx-2'}>
@@ -195,27 +195,19 @@ const LetWorkBeDone = () => {
 }
 
 export default LetWorkBeDone;
-//
-// export const getServerSideProps = async ({req}) => {
-//     try {
-//         const token = JSON.parse(req.cookies.token ?? null);
-//         const user = req.cookies.user ?? null;
-//         // const config = token && {
-//         //     headers: { Authorization: `Bearer ${token}` }
-//         // }
-//
-//         return {
-//             props: {
-//                 user,
-//                 token
-//             },
-//         }
-//     } catch (e) {
-//         return {
-//             props: {
-//                 user: null,
-//                 token: null
-//             }
-//         }
-//     }
-// }
+
+export const getServerSideProps = async ({req}) => {
+    let data;
+    await authenticateUser(req).then((res) => {
+        data = res.data
+    }).catch(err => {
+        data = null
+        console.log(err)
+    });
+    // console.log(data);
+    return {
+        props: {
+            user: data
+        }
+    }
+}

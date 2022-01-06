@@ -1,31 +1,32 @@
-import {useContext, useEffect, useState} from "react";
+import {useContext, useState} from "react";
 import {UserContext} from "../lib/UserContext";
 import {actions, values} from "../lib/Constants";
 import {useRouter} from "next/router";
 import Head from "next/head"
+import axios from '../lib/AxiosConfig';
+import {authenticateUser} from "../lib/Authentication";
 
-const Register = () => {
+const Register = ({user}) => {
     const router = useRouter();
     const {state, dispatch} = useContext(UserContext);
     const [username, setUsername] = useState('');
-    const {user} = state
-    const getLocalStorage = async () => {
-        localStorage.getItem(values.USER) === null && await router.push('/join_now')
-    }
+    // const {user} = state
 
-    useEffect(() => {
-        getLocalStorage()
-    }, [router])
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(
-            {
-                type: actions.UPDATE_USERNAME,
-                payload: username
-            }
-        );
-        localStorage.setItem(values.USER, JSON.stringify({...state.user, username}));
+        axios.put(`user/${user.id}`, {
+            username
+        }).then((res) => {
+            dispatch(
+                {
+                    type: actions.UPDATE_USERNAME,
+                    payload: username
+                }
+            );
+            localStorage.setItem(values.USER, JSON.stringify({...state.user, username}));
+            router.push('/');
+        })
     }
 
     return <>
@@ -39,10 +40,10 @@ const Register = () => {
             {/*    Card for setting username*/}
             <form onSubmit={handleSubmit}>
                 <div className={"w-screen-40 h-max rounded-md shadow-md my-6 border border-gray-200 py-6 px-6"}>
-                    {state.user &&
+                    {state.user && user &&
                     <div className={"w-full flex flex-col items-center"}>
                         {/*    Profile Picture */}
-                        <img src={state.user.imageUrl} className={"h-max w-max rounded-full"} alt={"Profile Picture"}/>
+                        <img src={user.image_url} className={"h-max w-max rounded-full"} alt={"Profile Picture"}/>
                         <div className={"w-full"}>
                             {/*    Input field for the username*/}
                             <label>
@@ -65,7 +66,7 @@ const Register = () => {
                             <input
                                 type={"text"}
                                 disabled
-                                value={state.user.email}
+                                value={user.email}
                                 className={"w-full h-10 focus:outline-none text-gray-500 bg-gray-200 focus:ring ring-offset-blue-300 px-3 rounded-sm transition border border-gray-300 focus:border-blue-400"}
                             />
                         </div>
@@ -81,3 +82,25 @@ const Register = () => {
 }
 
 export default Register;
+
+export const getServerSideProps = async ({res, req}) => {
+    let data;
+    await authenticateUser(req).then((res) => {
+        data = res.data
+    }).catch(err => console.log(err));
+
+    if (!data || data.username) {
+        return {
+            redirect: {
+                destination: '/',
+                permanent: false,
+            },
+        }
+    }
+
+    return {
+        props: {
+            user: data ? data : null
+        }
+    }
+}

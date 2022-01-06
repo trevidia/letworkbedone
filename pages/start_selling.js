@@ -39,7 +39,7 @@ const StartSelling = () => {
                                 </Link>
                             </div> :
                             <div className={"mt-16"}>
-                                <Link href={`/users/${state.user.username}/proposals/create_proposal`}>
+                                <Link href={`/users/${state.user.username}/proposals/manage_proposal`}>
                                     <a className={"flex bg-blue-800 py-2 px-3 rounded-md ring-1 ring-red-400 ring-opacity-50 hover:bg-blue-400 transition-colors"}>
                                         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none"
                                              viewBox="0 0 24 24" stroke="currentColor">
@@ -184,7 +184,7 @@ const StartSelling = () => {
                                 </Link>
                             </div> :
                             <div className={"mt-16 w-full text-white flex justify-center"}>
-                                <Link href={`/users/${state.user.username}/proposals/create_proposal`}>
+                                <Link href={`/users/${state.user.username}/proposals/manage_proposal`}>
                                     <a className={"flex bg-blue-800 py-2 px-3 w-max rounded-md ring-1 ring-red-400 ring-opacity-50 hover:bg-blue-400 transition-colors"}>
                                         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none"
                                              viewBox="0 0 24 24" stroke="currentColor">

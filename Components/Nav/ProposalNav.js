@@ -1,87 +1,61 @@
-import Link from 'next/link';
 import {useContext} from "react";
 import {UserContext} from "../../lib/UserContext";
-import Image from "next/image";
+import GigNavLink from '../GigNavLink';
+import {useGigId} from "../../lib/CustomHooks";
 
 const ProposalNav = ({active}) => {
     const {state} = useContext(UserContext);
+    const gigId = useGigId();
+
     return <nav>
         <div className={"px-8 h-10 border-b border-gray-300"}>
             <ul className={"flex items-center h-full text-sm"}>
                 {
                     state.user ? <>
+
                         <li className={"px-2"}>
-                            <Link href={`/users/${state.user.username}/proposals/create_proposal`}>
-                                <a>
-                                    <div className={"flex items-center"}>
-                                        <span className={1 <= active ? "circle_active" : "circle_nonactive"}>1</span>
-                                        <span>Overview</span>
-                                        <Image src={"/images/svg/navigate_next.svg"} width={20} height={20}
-                                               alt={"icon nav"}/>
-                                    </div>
-                                </a>
-                            </Link>
+                            <GigNavLink
+                                position={1}
+                                title={'Overview'}
+                                active={1 <= active}
+                                link={`/users/${state.user.username}/proposals/manage_proposal?overview&${gigId ? `id=${gigId}` : ''}`}/>
                         </li>
                         <li className={"px-2"}>
-                            <Link href={`/users/${state.user.username}/proposals/create_proposal?scope_pricing`}>
-                                <a>
-                                    <div className={"flex items-center"}>
-                                        <span className={2 <= active ? "circle_active" : "circle_nonactive"}>2</span>
-                                        <span>Scope and Pricing</span>
-                                        <Image src={"/images/svg/navigate_next.svg"} width={20} height={20}
-                                               alt={"icon nav"}/>
-                                    </div>
-                                </a>
-                            </Link>
+                            <GigNavLink
+                                position={2}
+                                title={'Scope and Pricing'}
+                                active={2 <= active}
+                                link={`/users/${state.user.username}/proposals/manage_proposal?scope_pricing&${gigId ? `id=${gigId}` : ''}`}/>
                         </li>
                         <li className={"px-2"}>
-                            <Link href={`/users/${state.user.username}/proposals/create_proposal?description_faq`}>
-                                <a>
-                                    <div className={"flex items-center"}>
-                                        <span className={3 <= active ? "circle_active" : "circle_nonactive"}>3</span>
-                                        <span>Description & Faq</span>
-                                        <Image src={"/images/svg/navigate_next.svg"} width={20} height={20}
-                                               alt={"icon nav"}/>
-                                    </div>
-                                </a>
-                            </Link>
+                            <GigNavLink
+                                position={3}
+                                title={'Description & Faq'}
+                                active={3 <= active}
+                                link={`/users/${state.user.username}/proposals/manage_proposal?description_faq&${gigId ? `id=${gigId}` : ''}`}/>
                         </li>
                         <li className={"px-2"}>
-                            <Link href={`/users/${state.user.username}/proposals/create_proposal?requirements`}>
-                                <a>
-                                    <div className={"flex items-center"}>
-                                        <span className={4 <= active ? "circle_active" : "circle_nonactive"}>4</span>
-                                        <span>Requirements</span>
-                                        <Image src={"/images/svg/navigate_next.svg"} width={20} height={20}
-                                               alt={"icon nav"}/>
-                                    </div>
-                                </a>
-                            </Link>
+                            <GigNavLink
+                                position={4}
+                                title={'Requirements'}
+                                active={4 <= active}
+                                link={`/users/${state.user.username}/proposals/manage_proposal?requirements&${gigId ? `id=${gigId}` : ''}`}/>
                         </li>
                         <li className={"px-2"}>
-                            <Link href={`/users/${state.user.username}/proposals/create_proposal?gallery`}>
-                                <a>
-                                    <div className={"flex items-center"}>
-                                        <span className={5 <= active ? "circle_active" : "circle_nonactive"}>5</span>
-                                        <span>Gallery</span>
-                                        <Image src={"/images/svg/navigate_next.svg"} width={20} height={20}
-                                               alt={"icon nav"}/>
-                                    </div>
-                                </a>
-                            </Link>
+                            <GigNavLink
+                                position={5}
+                                title={'Gallery'}
+                                active={5 <= active}
+                                link={`/users/${state.user.username}/proposals/manage_proposal?gallery&${gigId ? `id=${gigId}` : ''}`}/>
                         </li>
                         <li className={"px-2"}>
-                            <Link href={`/users/${state.user.username}/proposals/create_proposal?publish`}>
-                                <a>
-                                    <div className={"flex items-center"}>
-                                        <span className={6 <= active ? "circle_active" : "circle_nonactive"}>6</span>
-                                        <span>Publish</span>
-                                        <Image src={"/images/svg/navigate_next.svg"} width={20} height={20}
-                                               alt={"icon nav"}/>
-                                    </div>
-                                </a>
-                            </Link>
+                            <GigNavLink
+                                position={6}
+                                title={'Publish'}
+                                active={6 <= active}
+                                link={`/users/${state.user.username}/proposals/manage_proposal?publish&${gigId ? `id=${gigId}` : ''}`}/>
                         </li>
+
                     </> : "Loading....."
                 }
 

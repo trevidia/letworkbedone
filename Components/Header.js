@@ -7,6 +7,7 @@ import SubProfileDropdown from "./Nav/SubProfileDropdown";
 import {useHasUser} from "../lib/CustomHooks";
 import Image from "next/image";
 import {DrawerContext} from "../lib/DrawerContext";
+import axios from '../lib/AxiosConfig'
 
 // Top most nav bar
 const Header = () => {
@@ -143,17 +144,19 @@ const Header = () => {
 
                     }
                     {
-                        user !== null && user.username !== null && <>
+                        (user !== null && user.username !== null) && <>
                             <ul className={"flex justify-end w-full h-full lg:pr-6"}>
                                 <li className={"h-full hidden md:flex items-center mx-1"}>
-                                    <Link href={`/users/${user.username}/requests/post_request`}>
+                                    <Link
+                                        href={`/users/${!user.username ? "user" : user.username}/requests/post_request`}>
                                         <a className={"uppercase hover:text-link"}>
                                             Post A request
                                         </a>
                                     </Link>
                                 </li>
                                 <li className={" h-full  hidden md:flex items-center mx-1"}>
-                                    <Link href={`/users/${user.username}/proposals/create_proposal`}>
+                                    <Link
+                                        href={`/users/${!user.username ? "user" : user.username}/proposals/manage_proposal?overview`}>
                                         <a className={"uppercase hover:text-link"}>
                                             Post A Gig
                                         </a>
@@ -170,14 +173,14 @@ const Header = () => {
                                     </a>
                                 </li>
                                 <li className={" h-full hidden md:flex items-center mx-1"}>
-                                    <Link href={`/users/${user.username}/favorites`}>
+                                    <Link href={`/users/${!user.username ? "user" : user.username}/favorites`}>
                                         <a className={"uppercase cursor-pointer hover:text-link"}>
                                             Favorites
                                         </a>
                                     </Link>
                                 </li>
                                 <li className={" h-full hidden md:flex items-center mx-1"}>
-                                    <Link href={`/users/${user.username}/cart`}>
+                                    <Link href={`/users/${!user.username ? "user" : user.username}/cart`}>
                                         <a className={"uppercase hover:text-link"}>
                                             Cart
                                         </a>
@@ -215,7 +218,7 @@ const Header = () => {
                                                             },
                                                             {
                                                                 title: "Create Gig",
-                                                                url: `/users/${user.username}/proposals/create_proposal`,
+                                                                url: `/users/${user.username}/proposals/manage_proposal?overview`,
                                                             },
                                                             {
                                                                 title: "Buyer Requests",
@@ -293,13 +296,19 @@ const Header = () => {
                                                             }
                                                         ]}/>
                                                     </li>
-                                                    <li className={"py-1 cursor-pointer px-3"} onClick={() => {
-                                                        dispatch({
-                                                            type: actions.LOGOUT,
-                                                        });
+                                                    <li className={"py-1 cursor-pointer px-3"} onClick={async () => {
                                                         // todo send request to backend
-                                                        localStorage.removeItem(values.USER);
-                                                        router.push("/")
+                                                        await axios.post('/logout', {
+                                                            id: user.id,
+                                                            tokenId: user.tokenId
+                                                        }).then((res) => {
+                                                            dispatch({
+                                                                type: actions.LOGOUT,
+                                                            });
+                                                            localStorage.removeItem(values.USER);
+                                                            router.push("/")
+                                                            console.log(res)
+                                                        }).catch(err => console.log(err));
                                                     }
                                                     }>Logout
                                                     </li>

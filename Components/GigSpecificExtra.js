@@ -1,7 +1,8 @@
 import {useState} from "react";
 import range from "../lib/UseFullFunctions";
+import {pricingActions} from "../lib/state/PricingFormState";
 
-const GigSpecificExtra = ({gigExtraTitle, isLast}) => {
+const GigSpecificExtra = ({gigExtraTitle, isLast, dispatch, daysDispatch, price, dayValue, attribute}) => {
     const [checked, setChecked] = useState(false);
 
     const handleChecked = (e) => {
@@ -23,12 +24,30 @@ const GigSpecificExtra = ({gigExtraTitle, isLast}) => {
                         <span className={'w-1/6 ml-2'}>for an extra</span>
                         <div className={"w-3/4 flex items-center"}>
                             <div className={"w-1/3 mr-2"}>
-                                <input type={'number'} className={"input h-8 rounded-md "}/>
+                                <input type={'number'} value={price} onChange={event => {
+                                    dispatch({
+                                        type: pricingActions.addGigExtra,
+                                        payload: {
+                                            attributeId: attribute.id,
+                                            price: event.target.value
+                                        }
+                                    })
+                                }} className={"input h-8 rounded-md "}/>
                             </div>
                             <span>$ and additional</span>
                             <div>
                                 {
-                                    <select className={"gig_select_input border border-gray-300 rounded-md ml-2"}>
+                                    <select onChange={event => {
+                                        dispatch({
+                                            type: pricingActions.addGigExtra,
+                                            payload: {
+                                                attributeId: attribute.id,
+                                                additionalDays: event.target.value
+                                            }
+                                        })
+                                    }
+                                    } value={dayValue}
+                                            className={"gig_select_input border border-gray-300 rounded-md ml-2"}>
                                         {range().map((number, index) => {
                                             return <option key={number + "extra_day" + index}>{number} days</option>
                                         })}

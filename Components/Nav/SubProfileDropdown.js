@@ -1,7 +1,7 @@
 import {useState} from "react";
 import Link from "next/link";
 
-const SubProfileDropdown = ({title, subList}) => {
+const SubProfileDropdown = ({title, subList, parentLink}) => {
     const [isOpen, setIsOpen] = useState(false)
     const handleClick = () => {
         if (!isOpen) {
@@ -23,8 +23,17 @@ const SubProfileDropdown = ({title, subList}) => {
                 <div className={"bg-gray-200 "}>
                     <ul>
                         {subList.map((element) => {
+                            if (element.url === undefined) {
+                                return <li key={element.title} className={"py-1 pl-7  hover:bg-gray-100"}>
+                                    <Link href={`/categories/${parentLink}/${element.slug}`}>
+                                        <a>
+                                            {element.title}
+                                        </a>
+                                    </Link>
+                                </li>
+                            }
                             return <li key={element.title} className={"py-1 pl-7  hover:bg-gray-100"}>
-                                <Link href={element.url}>
+                                <Link href={`${element.url}`}>
                                     <a>
                                         {element.title}
                                     </a>
