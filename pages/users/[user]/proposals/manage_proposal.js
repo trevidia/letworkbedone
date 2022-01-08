@@ -7,22 +7,25 @@ import Overview from "../../../../Components/forms/Overview";
 import Publish from "../../../../Components/forms/Publish";
 import ProposalNav from "../../../../Components/Nav/ProposalNav";
 import {useEffect, useState} from "react";
+import {values} from "../../../../lib/Constants";
 
 const CreateProposal = () => {
     const router = useRouter();
     const [path, setPath] = useState('');
+    const [user, setUser] = useState({})
     const queries = router.query;
     // get if the route has the property if it has it then return a particular form
     console.log(router.asPath.split('?')[1]);
     useEffect(
         () => {
+            setUser(JSON.parse(window.localStorage.getItem(values.USER)));
             const firstPath = router.asPath.split('?')[1];
             if (firstPath) setPath(firstPath.split('&')[0]);
         }, [router.asPath]
     )
     switch (path) {
         case "scope_pricing":
-            return <><ProposalNav active={2}/><ScopePricing/></>
+            return <><ProposalNav active={2}/><ScopePricing user={user}/></>
         case "description_faq":
             return <><ProposalNav active={3}/><DescriptionFaq/></>
         case "requirements":

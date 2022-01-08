@@ -6,10 +6,10 @@ import axios from "../../lib/AxiosConfig";
 import {useRouter} from "next/router";
 import {init, initialPricingState, pricingActions, pricingReducer} from "../../lib/state/PricingFormState";
 
-const ScopePricing = () => {
+const ScopePricing = ({user}) => {
     const [state, dispatch] = useReducer(pricingReducer, initialPricingState, init)
     const [multiPackage, setMultiPackage] = useState(false);
-    const [gig, setGig] = useState([])
+    const [gig, setGig] = useState({})
     const router = useRouter()
 
     useEffect(() => {
@@ -39,13 +39,114 @@ const ScopePricing = () => {
         gig.attributes && gig.attributes.map((attribute, index) => {
             switch (attribute.type) {
                 case "checkbox":
-                    assigner([pricingActions.addBasicSpecs, pricingActions.addStandardSpecs, pricingActions.addPremiumSpecs], false, attribute)
+                    assigner([pricingActions.addBasicSpecs, pricingActions.addStandardSpecs, pricingActions.addPremiumSpecs], 'false', attribute)
                     break
                 default:
                     assigner([pricingActions.addBasicSpecs, pricingActions.addStandardSpecs, pricingActions.addPremiumSpecs], "", attribute)
                     break
             }
         })
+    }, [gig])
+
+    useEffect(() => {
+        if (gig.packages && gig.packages.basic !== null) {
+            if (gig.gigExtras.length !== 0) {
+                gig.gigExtras.forEach((extra) => {
+                    dispatch({
+                        type: pricingActions.addGigExtra,
+                        payload: {
+                            title: extra.gig_extra_title,
+                            additionalDays: extra.additional_days,
+                            custom: extra.custom_extra,
+                            price: extra.price
+                        }
+                    })
+                })
+            }
+            dispatch({
+                type: pricingActions.addBasicDescription,
+                payload: gig.packages.basic.package.package_description,
+            })
+            dispatch({
+                type: pricingActions.addBasicDelivery,
+                payload: gig.packages.basic.package.days_to_completion,
+            })
+            dispatch({
+                type: pricingActions.addBasicRevision,
+                payload: gig.packages.basic.package.revision_count
+            })
+            dispatch({
+                type: pricingActions.addBasicPrice,
+                payload: gig.packages.basic.package.price
+            })
+            gig.packages.basic.attribute.forEach((attribute) => {
+                dispatch({
+                    type: pricingActions.addBasicSpecs,
+                    payload: {
+                        title: attribute.spec,
+                        value: attribute.package_spec_detail_value,
+                        attributeId: attribute.package_spec_id
+                    },
+                })
+            })
+            if (gig.packages.standard !== null && gig.packages.premium !== null) {
+                setMultiPackage(true)
+
+                dispatch({
+                    type: pricingActions.addStandardDelivery,
+                    payload: gig.packages.standard.package.days_to_completion,
+                })
+                dispatch({
+                    type: pricingActions.addStandardDescription,
+                    payload: gig.packages.standard.package.package_description,
+                })
+                dispatch({
+                    type: pricingActions.addStandardRevision,
+                    payload: gig.packages.standard.package.revision_count
+                })
+                dispatch({
+                    type: pricingActions.addStandardPrice,
+                    payload: gig.packages.standard.package.price
+                })
+                gig.packages.standard.attribute.forEach((attribute) => {
+                    dispatch({
+                        type: pricingActions.addStandardSpecs,
+                        payload: {
+                            title: attribute.spec,
+                            value: attribute.package_spec_detail_value,
+                            attributeId: attribute.package_spec_id
+                        },
+                    })
+                })
+                dispatch({
+                    type: pricingActions.addPremiumDelivery,
+                    payload: gig.packages.premium.package.days_to_completion,
+                })
+                dispatch({
+                    type: pricingActions.addPremiumDescription,
+                    payload: gig.packages.premium.package.package_description,
+                })
+                dispatch({
+                    type: pricingActions.addPremiumRevision,
+                    payload: gig.packages.premium.package.revision_count
+                })
+                dispatch({
+                    type: pricingActions.addPremiumPrice,
+                    payload: gig.packages.premium.package.price
+                })
+                gig.packages.premium.attribute.forEach((attribute) => {
+                    dispatch({
+                        type: pricingActions.addPremiumSpecs,
+                        payload: {
+                            title: attribute.spec,
+                            value: attribute.package_spec_detail_value,
+                            attributeId: attribute.package_spec_id
+                        },
+                    })
+                })
+            }
+
+        }
     }, [gig])
 
     const handleChecked = () => {
@@ -63,6 +164,7 @@ const ScopePricing = () => {
         }
         axios.patch(`/gig/${gig.id}`, data).then((res) => {
             console.log(res.data)
+            router.push(`/users/${user.username}/proposals/manage_proposal?description_faq&id=${gig.id}`)
         }).catch((err) => {
             console.log(err)
         })
@@ -495,6 +597,7 @@ const ScopePricing = () => {
                             </tbody>
                         </table>
                         {
+                            // if its not multipackage the cover should coverup the fields
                             !multiPackage && <div
                                 className={"absolute border border-gray-300 z-20 right-0 top-0 bg-white bg-opacity-50 backdrop-filter backdrop-blur-sm h-full"}
                                 style={{width: '298px'}}>
@@ -527,12 +630,13 @@ const ScopePricing = () => {
                                     key={attribute.extra_spec_title + index}
                                     dispatch={dispatch}
                                     attribute={attribute}
+                                    attributes={state.extras}
                                     gigExtraTitle={attribute.extra_spec_title}
                                 />
                             })
                         }
                         {/*  Add extra services option  */}
-                        <AddUserExtraService/>
+                        <AddUserExtraService extras={state.extras} dispatch={dispatch}/>
                     </div>
                 </div>
                 {/*Cancel Gig creation and save and continue*/}

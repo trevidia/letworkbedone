@@ -46,7 +46,7 @@ const GigTableBody = ({data}) => {
                             <td className={"border-r border-gray-300"}>
                                 <p className={"text-blue-800 px-2"}>
                                     {
-                                        gig.packages.length !== 0 ? `${gig.packages.price}` : 0
+                                        gig.price !== null ? `$ ${gig.price}` : 0
                                     }
                                 </p>
                             </td>

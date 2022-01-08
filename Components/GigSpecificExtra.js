@@ -1,21 +1,39 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import range from "../lib/UseFullFunctions";
 import {pricingActions} from "../lib/state/PricingFormState";
 
-const GigSpecificExtra = ({gigExtraTitle, isLast, dispatch, daysDispatch, price, dayValue, attribute}) => {
+const GigSpecificExtra = ({gigExtraTitle, isLast, dispatch, daysDispatch, attribute, attributes}) => {
     const [checked, setChecked] = useState(false);
+    const [price, setPrice] = useState('')
+    const [days, setDays] = useState('')
+    const [title, setTitle] = useState(attribute.extra_spec_title)
+
+    useEffect(() => {
+        let attrib = attributes.find(el => el.title === title)
+        console.log(attrib, "attrib")
+        if (attrib !== undefined) {
+            setChecked(true)
+            setPrice(attrib.price)
+            setDays(attrib.additionalDays)
+        }
+    }, [attributes])
 
     const handleChecked = (e) => {
         if (e.target.checked) {
             setChecked(true)
         } else {
+            // remove the extra from the state if its not checked
+            dispatch({
+                type: pricingActions.removeGigExtra,
+                payload: title
+            })
             setChecked(false)
         }
     }
 
     return <div
         className={"h-16 px-4 flex items-center  py-5 border-gray-300 " + (!(isLast !== null && isLast === true) && "border-b ")}>
-        <input type={"checkbox"} onChange={handleChecked}/>
+        <input type={"checkbox"} checked={checked} onChange={handleChecked}/>
         <span className={" ml-4 w-1/5"}>{gigExtraTitle}</span>
         <div className={"w-5/6 flex items-center"}>
             {
@@ -28,7 +46,8 @@ const GigSpecificExtra = ({gigExtraTitle, isLast, dispatch, daysDispatch, price,
                                     dispatch({
                                         type: pricingActions.addGigExtra,
                                         payload: {
-                                            attributeId: attribute.id,
+                                            title: attribute.extra_spec_title,
+                                            custom: "false",
                                             price: event.target.value
                                         }
                                     })
@@ -41,15 +60,17 @@ const GigSpecificExtra = ({gigExtraTitle, isLast, dispatch, daysDispatch, price,
                                         dispatch({
                                             type: pricingActions.addGigExtra,
                                             payload: {
-                                                attributeId: attribute.id,
+                                                title: attribute.extra_spec_title,
+                                                custom: "false",
                                                 additionalDays: event.target.value
                                             }
                                         })
                                     }
-                                    } value={dayValue}
+                                    } value={days}
                                             className={"gig_select_input border border-gray-300 rounded-md ml-2"}>
                                         {range().map((number, index) => {
-                                            return <option key={number + "extra_day" + index}>{number} days</option>
+                                            return <option key={number + "extra_day" + index}
+                                                           value={number}>{number} days</option>
                                         })}
                                     </select>
                                 }
